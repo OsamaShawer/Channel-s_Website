@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Code2,
   BookOpen,
@@ -9,11 +10,7 @@ import {
   Star,
   Zap,
 } from "lucide-react";
-import {
-  fadeUp,
-  viewportConfig,
-  immediateViewportConfig,
-} from "../utils/animations";
+import { fadeUp, viewportConfig } from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 
 function AnimatedBlob() {
@@ -41,6 +38,12 @@ function AnimatedBlob() {
 }
 
 function PythonRoadmap() {
+  const navigate = useNavigate();
+
+  const handleAssignmentsClick = () => {
+    navigate("/roadmap/python/assignments");
+  };
+
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-white">
       {/* Hero / Introduction */}
@@ -135,7 +138,21 @@ function PythonRoadmap() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <article className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-300 hover:border-emerald-400/30 hover:bg-gradient-to-br hover:from-white/[0.08] hover:to-white/[0.04] hover:shadow-emerald-500/10 overflow-hidden">
+              <motion.article
+                whileHover={{ scale: 1.02, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAssignmentsClick}
+                className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-300 hover:border-emerald-400/30 hover:bg-gradient-to-br hover:from-white/[0.08] hover:to-white/[0.04] hover:shadow-emerald-500/10 overflow-hidden cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleAssignmentsClick();
+                  }
+                }}
+                aria-label="Open Python Assignments"
+              >
                 {/* Decorative gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -168,7 +185,7 @@ function PythonRoadmap() {
                     <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
-              </article>
+              </motion.article>
             </div>
           </div>
         </section>
