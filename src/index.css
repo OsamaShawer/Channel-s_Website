@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* Ensure smooth animations and prevent layout jumps */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent layout shifts during animations */
+.motion-safe {
+  will-change: transform, opacity;
+}
+
+/* Ensure proper stacking context for animated elements */
+.relative {
+  position: relative;
+}
+
+/* Prevent content from jumping during scroll animations */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, [role="button"] {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Ensure proper backdrop blur support */
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Prevent text selection during animations */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Critical rendering fixes */
+section {
+  /* Ensure sections always have content */
+  min-height: 200px;
+}
+
+/* Prevent invisible content during route transitions */
+[data-framer-motion] {
+  /* Force visibility during transitions */
+  opacity: 1 !important;
+}
+
+/* Ensure grid layouts don't collapse */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Prevent animation conflicts */
+.motion-section {
+  /* Ensure sections are always visible */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Fallback for slow connections */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+}
