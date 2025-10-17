@@ -297,7 +297,8 @@ export default function FrontendRoadmap() {
                 animate={isLoaded ? "visible" : "hidden"}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-white/30 hover:shadow-white/10"
+                transition={{ duration: 0.1, ease: "easeOut" }}
+                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-white/30 hover:shadow-white/10"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
@@ -376,7 +377,8 @@ export default function FrontendRoadmap() {
                 animate={isLoaded ? "visible" : "hidden"}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-white/20"
+                transition={{ duration: 0.1, ease: "easeOut" }}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-white/20"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">

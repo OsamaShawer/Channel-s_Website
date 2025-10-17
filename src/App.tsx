@@ -12,23 +12,18 @@ import { pageVariants } from "./utils/animations";
 function ScrollToTop() {
   const { pathname } = useLocation();
   React.useEffect(() => {
-    // Reset scroll position immediately
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-    // Also reset document element scroll
+    // Immediate scroll reset without animation
+    window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
-    document.documentElement.scrollLeft = 0;
-
-    // Ensure body scroll is reset
     document.body.scrollTop = 0;
-    document.body.scrollLeft = 0;
 
-    // Force a reflow to ensure scroll position is reset
+    // Force layout recalculation
+    document.body.offsetHeight;
+
+    // Small delay to ensure everything is reset
     const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      // Trigger a layout recalculation
-      document.body.offsetHeight;
-    }, 10);
+      window.scrollTo(0, 0);
+    }, 50);
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -84,8 +79,8 @@ function App() {
 
 function Page({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
-    // Ensure scroll is at top when page mounts
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    // Immediate scroll reset
+    window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, []);
@@ -96,9 +91,8 @@ function Page({ children }: { children: React.ReactNode }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen pt-16 smooth-scroll"
+      className="min-h-screen pt-16"
       style={{
-        // Ensure content is always visible
         opacity: 1,
         transform: "translateY(0)",
         overflow: "visible",

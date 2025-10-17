@@ -21,16 +21,14 @@ export function BackToTop() {
 
   const scrollToTop = () => {
     // Reset all scroll positions
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    // Also handle smooth scrolling for better UX
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    // Force immediate scroll
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 10);
   };
 
   return (

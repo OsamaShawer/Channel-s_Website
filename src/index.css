@@ -11,6 +11,7 @@ html {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   height: 100%;
   overflow-x: hidden;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
   letter-spacing: -0.01em;
   min-height: 100vh;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 /* Enhanced scroll behavior */
@@ -43,7 +45,7 @@ body {
 /* Smooth scrolling for all elements */
 .smooth-scroll {
   scroll-behavior: smooth;
-  -webkit-}
+  }
 
 /* Fix for mobile scroll issues */
 @media (max-width: 768px) {
@@ -52,8 +54,7 @@ body {
     -ms-text-size-adjust: 100%;
   }
   
-  body {
-    -webkit-  }
+
 }
 
 /* Ensure proper stacking context for animated elements */
@@ -67,14 +68,23 @@ body {
   min-height: 100dvh; /* Dynamic viewport height for mobile */
 }
 
-/* Enhanced transitions for professional feel */
+/* Enhanced transitions for professional feel - instant hover */
 button, a, [role="button"], .interactive {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 button:hover, a:hover, [role="button"]:hover, .interactive:hover {
   transform: translateY(-1px);
+}
+
+/* Instant hover feedback */
+.hover-instant {
+  transition: all 0.1s ease-out;
+}
+
+.hover-instant:hover {
+  transform: translateY(-2px);
 }
 
 /* Enhanced backdrop blur with glass morphism */
@@ -217,11 +227,21 @@ section {
 .scroll-container {
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-  scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix scroll issues on main containers */
+main {
+  overflow-x: hidden;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+}
+
+/* Better scroll performance */
+section {
+  scroll-margin-top: 80px;
+  scroll-snap-align: start;
 }
 
 /* Fix for iOS Safari scroll issues */
-@supports (-webkit-touch-callout: none) {
-  body {
-    -webkit-  }
-}

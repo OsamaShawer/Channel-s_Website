@@ -143,8 +143,9 @@ function PythonRoadmap() {
               <motion.article
                 whileHover={{ scale: 1.02, y: -4 }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.1, ease: "easeOut" }}
                 onClick={handleAssignmentsClick}
-                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden cursor-pointer"
+                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden cursor-pointer"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -156,11 +157,11 @@ function PythonRoadmap() {
                 aria-label="Open Python Assignments"
               >
                 {/* Decorative gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
                 <div className="relative z-10">
                   <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-300">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
                       <Code2 className="h-6 w-6 text-emerald-300" />
                     </div>
                     <div className="flex items-center gap-2">
@@ -182,9 +183,9 @@ function PythonRoadmap() {
                     <div className="h-1 w-1 rounded-full bg-emerald-400"></div>
                     <span>Interactive exercises</span>
                   </div>
-                  <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-300">
+                  <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-100">
                     <span>Start learning</span>
-                    <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                   </div>
                 </div>
               </motion.article>
@@ -241,14 +242,14 @@ function PythonRoadmap() {
               variants={fadeUp}
               whileHover={{ scale: 1.02, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
+              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
             >
               {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-300">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-100">
                     <Target className="h-6 w-6 text-cyan-300" />
                   </div>
                   <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
@@ -267,9 +268,9 @@ function PythonRoadmap() {
                   <div className="h-1 w-1 rounded-full bg-cyan-400"></div>
                   <span>Progressive difficulty</span>
                 </div>
-                <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-300">
+                <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-100">
                   <span>Take challenge</span>
-                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                 </div>
               </div>
             </motion.article>
@@ -325,14 +326,14 @@ function PythonRoadmap() {
               variants={fadeUp}
               whileHover={{ scale: 1.02, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"
+              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"
             >
               {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-teal-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-300">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-teal-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
                     <Play className="h-6 w-6 text-emerald-300" />
                   </div>
                   <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
@@ -351,9 +352,9 @@ function PythonRoadmap() {
                   <div className="h-1 w-1 rounded-full bg-emerald-400"></div>
                   <span>Step-by-step tutorials</span>
                 </div>
-                <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-300">
+                <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-100">
                   <span>Watch now</span>
-                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                 </div>
               </div>
             </motion.article>
@@ -409,14 +410,14 @@ function PythonRoadmap() {
               variants={fadeUp}
               whileHover={{ scale: 1.02, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
+              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
             >
               {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-300">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-100">
                     <BookOpen className="h-6 w-6 text-cyan-300" />
                   </div>
                   <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
@@ -435,9 +436,9 @@ function PythonRoadmap() {
                   <div className="h-1 w-1 rounded-full bg-cyan-400"></div>
                   <span>Comprehensive guides</span>
                 </div>
-                <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-300">
+                <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-100">
                   <span>Explore knowledge</span>
-                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                 </div>
               </div>
             </motion.article>

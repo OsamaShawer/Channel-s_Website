@@ -211,6 +211,7 @@ export default function Main() {
                     initial="rest"
                     whileHover="hover"
                     whileTap="tap"
+                    transition={{ duration: 0.1, ease: "easeOut" }}
                     role={isFrontend ? "button" : undefined}
                     tabIndex={isFrontend ? 0 : -1}
                     onClick={handleActivate}
@@ -227,7 +228,7 @@ export default function Main() {
                         : undefined
                     }
                     className={
-                      "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
+                      "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
                       (isFrontend ? "cursor-pointer" : "")
                     }
                   >
@@ -315,8 +316,8 @@ export default function Main() {
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={viewportConfig}
                   transition={{
-                    duration: 0.6,
-                    delay: idx * 0.08,
+                    duration: 0.4,
+                    delay: idx * 0.05,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                   role={isPython ? "button" : undefined}
@@ -333,7 +334,7 @@ export default function Main() {
                     isPython ? "Open Python course roadmap" : undefined
                   }
                   className={
-                    "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
+                    "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
                     (isPython ? "cursor-pointer" : "")
                   }
                 >

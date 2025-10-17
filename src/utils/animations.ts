@@ -107,10 +107,10 @@ export const buttonHover: Variants = {
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   },
   hover: {
-    scale: 1.05,
+    scale: 1.02,
     boxShadow: "0 8px 25px rgba(0, 0, 0, 0.25)",
     transition: {
-      duration: 0.2,
+      duration: 0.1,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },

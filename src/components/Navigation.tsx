@@ -51,7 +51,7 @@ export function Navigation() {
                 whileHover="hover"
                 whileTap="tap"
                 onClick={() => navigate(item.path)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-100 ${
                   isActive(item.path)
                     ? "bg-white/10 text-white border border-white/20"
                     : "text-slate-300 hover:text-white hover:bg-white/5"
@@ -98,7 +98,7 @@ export function Navigation() {
                   navigate(item.path);
                   setIsOpen(false);
                 }}
-                className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left font-medium transition-all duration-300 ${
+                className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left font-medium transition-all duration-100 ${
                   isActive(item.path)
                     ? "bg-white/10 text-white border border-white/20"
                     : "text-slate-300 hover:text-white hover:bg-white/5"
