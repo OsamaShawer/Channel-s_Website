@@ -5,6 +5,7 @@ import Frontend from "./components/FrontendRoadmap";
 import Python from "./components/PythonRoadmap";
 import { Navigation } from "./components/Navigation";
 import { BackToTop } from "./components/BackToTop";
+import PythonAssignments from "./components/PythonAssignments";
 import { AnimatePresence, motion } from "framer-motion";
 import { pageVariants } from "./utils/animations";
 
@@ -53,6 +54,14 @@ function App() {
             element={
               <Page>
                 <Python />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/python/assignments"
+            element={
+              <Page>
+                <PythonAssignments />
               </Page>
             }
           />

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Code2,
   BookOpen,
@@ -37,6 +38,12 @@ function AnimatedBlob() {
 }
 
 function PythonRoadmap() {
+  const navigate = useNavigate();
+
+  const handleAssignmentsClick = () => {
+    navigate("/roadmap/python/assignments");
+  };
+
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold">
       {/* Hero / Introduction */}
@@ -133,7 +140,21 @@ function PythonRoadmap() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden">
+              <motion.article
+                whileHover={{ scale: 1.02, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAssignmentsClick}
+                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleAssignmentsClick();
+                  }
+                }}
+                aria-label="Open Python Assignments"
+              >
                 {/* Decorative gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -166,7 +187,7 @@ function PythonRoadmap() {
                     <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
-              </article>
+              </motion.article>
             </div>
           </div>
         </section>
