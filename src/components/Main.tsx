@@ -15,7 +15,11 @@ import {
   Smartphone,
   Monitor,
 } from "lucide-react";
-import { viewportConfig, immediateViewportConfig } from "../utils/animations";
+import {
+  viewportConfig,
+  immediateViewportConfig,
+  cardHover,
+} from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 
 type Course = {
@@ -103,13 +107,13 @@ function AnimatedBlob() {
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
         aria-hidden
-        className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-indigo-500/30 via-fuchsia-500/30 to-sky-500/30 blur-3xl"
+        className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/40 via-fuchsia-500/40 to-sky-500/40 blur-3xl"
         animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
-        className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-sky-500/20 via-violet-500/20 to-pink-500/20 blur-3xl"
+        className="absolute -bottom-32 -left-32 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-sky-500/30 via-violet-500/30 to-pink-500/30 blur-3xl"
         animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
         transition={{
           repeat: Infinity,
@@ -125,25 +129,27 @@ function AnimatedBlob() {
 export default function Main() {
   const navigate = useNavigate();
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-white">
-      <section className="relative isolate px-4 sm:px-6 lg:px-8">
+    <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden">
+      <section className="relative isolate px-6 sm:px-8 lg:px-12">
         <AnimatedBlob />
-        <div className="mx-auto max-w-3xl pt-28 pb-20 text-center sm:pt-32 sm:pb-28">
+        <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur"
+            className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
           >
-            <Sparkles className="h-4 w-4 text-sky-300" />
-            <span className="text-sm text-slate-300">Modern Tech Academy</span>
+            <Sparkles className="h-5 w-5 text-sky-400" />
+            <span className="text-sm font-medium text-slate-200">
+              Modern Tech Academy
+            </span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
-            className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-br from-sky-300 via-white to-violet-300 bg-clip-text text-transparent"
+            className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-sky-400 via-blue-300 to-violet-400 bg-clip-text text-transparent leading-tight"
           >
             Welcome to TD Cousins
           </motion.h1>
@@ -152,7 +158,7 @@ export default function Main() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="mx-auto mt-5 max-w-2xl text-lg leading-7 text-slate-300"
+            className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-slate-300 font-light"
           >
             TD Cousins is an academy that provides you with lots of tutorials in
             programming and engineering. Learn by doing with a curated path and
@@ -162,19 +168,19 @@ export default function Main() {
       </section>
 
       <VisibilityGuard>
-        <section className="relative px-4 pb-28 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
+        <section className="relative px-6 pb-32 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={immediateViewportConfig}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-10 text-center"
+              className="mb-16 text-center"
             >
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
                 Fields of Study
               </h2>
-              <p className="mx-auto mt-3 max-w-3xl text-slate-300">
+              <p className="mx-auto mt-6 max-w-4xl text-lg text-slate-300 font-light leading-relaxed">
                 At TD Cousins, you can dive into various areas of technology and
                 engineering — from frontend design to intelligent systems.
               </p>
@@ -191,7 +197,7 @@ export default function Main() {
                   transition: { staggerChildren: 0.08, delayChildren: 0.05 },
                 },
               }}
-              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
             >
               {fieldsOfStudy.map((field) => {
                 const isFrontend = field.name === "Frontend Development";
@@ -201,13 +207,10 @@ export default function Main() {
                 return (
                   <motion.article
                     key={field.name}
-                    variants={{
-                      hidden: { opacity: 0, y: 50 },
-                      show: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.99 }}
+                    variants={cardHover}
+                    initial="rest"
+                    whileHover="hover"
+                    whileTap="tap"
                     role={isFrontend ? "button" : undefined}
                     tabIndex={isFrontend ? 0 : -1}
                     onClick={handleActivate}
@@ -224,23 +227,25 @@ export default function Main() {
                         : undefined
                     }
                     className={
-                      "group relative rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/20 backdrop-blur transition-colors hover:border-white/20 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-violet-400/40 " +
+                      "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
                       (isFrontend ? "cursor-pointer" : "")
                     }
                   >
                     <div className="flex items-start justify-between">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
-                        <field.icon className="h-5 w-5 text-violet-300" />
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/30 to-violet-500/30 ring-1 ring-inset ring-white/20 shadow-professional">
+                        <field.icon className="h-6 w-6 text-violet-200" />
                       </div>
                       {field.name !== "Data Science and Machine Learning" ? (
-                        <span className="rounded-full bg-amber-500/20 px-2.5 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
+                        <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1.5 text-xs font-semibold text-amber-200 ring-1 ring-inset ring-amber-400/40 shadow-professional">
                           In Progress
                         </span>
                       ) : null}
                     </div>
 
-                    <h3 className="mt-4 text-lg font-semibold">{field.name}</h3>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h3 className="mt-6 text-xl font-bold text-white">
+                      {field.name}
+                    </h3>
+                    <p className="mt-3 text-base text-slate-300 leading-relaxed">
                       {field.tagline}
                     </p>
 
@@ -271,7 +276,7 @@ export default function Main() {
             viewport={{ once: true }}
           >
             <motion.div
-              className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-violet-500/20 via-sky-500/20 to-fuchsia-500/20 blur-3xl"
+              className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-gradient-to-br from-violet-500/25 via-sky-500/25 to-fuchsia-500/25 blur-3xl"
               animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 16, ease: "easeInOut" }}
             />
@@ -279,25 +284,25 @@ export default function Main() {
         </section>
       </VisibilityGuard>
 
-      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+      <section className="relative px-6 pb-32 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportConfig}
             transition={{ duration: 0.6 }}
-            className="mb-10 text-center"
+            className="mb-16 text-center"
           >
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
               Our Courses
             </h2>
-            <p className="mt-3 text-slate-300">
+            <p className="mt-6 text-lg text-slate-300 font-light">
               Explore our growing collection of programming and engineering
               tutorials.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {courses.map((course, idx) => {
               const isPython = course.name === "Python";
               const handleActivate = () => {
@@ -306,10 +311,14 @@ export default function Main() {
               return (
                 <motion.article
                   key={course.name}
-                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={viewportConfig}
-                  transition={{ duration: 0.45, delay: idx * 0.05 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: idx * 0.08,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
                   role={isPython ? "button" : undefined}
                   tabIndex={isPython ? 0 : -1}
                   onClick={handleActivate}
@@ -324,23 +333,25 @@ export default function Main() {
                     isPython ? "Open Python course roadmap" : undefined
                   }
                   className={
-                    "group relative rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/20 backdrop-blur transition-colors hover:border-white/20 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-violet-400/40 " +
+                    "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
                     (isPython ? "cursor-pointer" : "")
                   }
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
-                      <course.icon className="h-5 w-5 text-sky-300" />
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/30 to-violet-500/30 ring-1 ring-inset ring-white/20 shadow-professional">
+                      <course.icon className="h-6 w-6 text-sky-200" />
                     </div>
                     {course.inProgress ? (
-                      <span className="rounded-full bg-amber-500/20 px-2.5 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
+                      <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1.5 text-xs font-semibold text-amber-200 ring-1 ring-inset ring-amber-400/40 shadow-professional">
                         In Progress
                       </span>
                     ) : null}
                   </div>
 
-                  <h3 className="mt-4 text-lg font-semibold">{course.name}</h3>
-                  <p className="mt-1 text-sm text-slate-300">
+                  <h3 className="mt-6 text-xl font-bold text-white">
+                    {course.name}
+                  </h3>
+                  <p className="mt-3 text-base text-slate-300 leading-relaxed">
                     {course.tagline}
                   </p>
 

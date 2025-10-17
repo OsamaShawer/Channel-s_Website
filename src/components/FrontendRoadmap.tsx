@@ -28,32 +28,34 @@ function AnimatedBlob() {
 
 export default function FrontendRoadmap() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-white">
+    <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
       {/* Hero / Introduction */}
       <motion.section
         key="frontend-hero"
-        className="relative isolate px-4 sm:px-6 lg:px-8"
+        className="relative isolate px-6 sm:px-8 lg:px-12"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
       >
         <AnimatedBlob />
-        <div className="mx-auto max-w-3xl pt-28 pb-20 text-center sm:pt-32 sm:pb-28">
+        <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur"
+            className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
           >
-            <Sparkles className="h-4 w-4 text-sky-300" />
-            <span className="text-sm text-slate-300">TD Cousins Academy</span>
+            <Sparkles className="h-6 w-6 text-sky-400" />
+            <span className="text-sm font-medium text-slate-200">
+              TD Cousins Academy
+            </span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
-            className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-br from-sky-300 via-white to-violet-300 bg-clip-text text-transparent"
+            className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-sky-400 via-blue-300 to-violet-400 bg-clip-text text-transparent leading-tight"
           >
             Frontend Development
           </motion.h1>
@@ -62,7 +64,7 @@ export default function FrontendRoadmap() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="mx-auto mt-5 max-w-2xl text-lg leading-7 text-slate-300"
+            className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-slate-300 font-light"
           >
             Frontend Development will make you develop and build animated,
             beautiful websites.
@@ -73,24 +75,24 @@ export default function FrontendRoadmap() {
       {/* What You Will Study */}
       <motion.section
         key="what-you-will-study"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
+        className="relative px-6 pb-32 sm:px-8 lg:px-12"
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
       >
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="mb-10 text-center"
+            className="mb-16 text-center"
           >
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
               What You Will Study
             </h2>
-            <p className="mx-auto mt-3 max-w-3xl text-slate-300">
+            <p className="mx-auto mt-6 max-w-4xl text-lg text-slate-300 font-light leading-relaxed">
               Master the core foundations of building for the web.
             </p>
           </motion.div>
@@ -100,7 +102,7 @@ export default function FrontendRoadmap() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
             {[
               {
@@ -124,18 +126,22 @@ export default function FrontendRoadmap() {
                 variants={fadeUp}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-white/30 hover:shadow-white/10"
               >
                 <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
-                    <item.icon className="h-5 w-5 text-sky-300" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
+                    <item.icon className="h-6 w-6 text-sky-300" />
                   </div>
                   <span className="rounded-full bg-amber-500/20 px-2.5 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
                     In Progress
                   </span>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                <p className="mt-1 text-sm text-slate-300">{item.desc}</p>
+                <h3 className="mt-6 text-xl font-bold text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-base text-slate-300 leading-relaxed">
+                  {item.desc}
+                </p>
               </motion.article>
             ))}
           </motion.div>
@@ -151,18 +157,18 @@ export default function FrontendRoadmap() {
         whileInView="visible"
         viewport={viewportConfig}
       >
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="mb-10 text-center"
+            className="mb-16 text-center"
           >
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
               Frontend Frameworks
             </h2>
-            <p className="mx-auto mt-3 max-w-3xl text-slate-300">
+            <p className="mx-auto mt-6 max-w-4xl text-lg text-slate-300 font-light leading-relaxed">
               Explore modern tools that help you build faster and better.
             </p>
           </motion.div>
@@ -172,7 +178,7 @@ export default function FrontendRoadmap() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
             {[
               {
@@ -196,18 +202,22 @@ export default function FrontendRoadmap() {
                 variants={fadeUp}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-5 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-300 hover:border-white/20"
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-white/20"
               >
                 <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
-                    <fw.icon className="h-5 w-5 text-violet-300" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
+                    <fw.icon className="h-6 w-6 text-violet-300" />
                   </div>
                   <span className="rounded-full bg-amber-500/20 px-2.5 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
                     In Progress
                   </span>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold">{fw.title}</h3>
-                <p className="mt-1 text-sm text-slate-300">{fw.desc}</p>
+                <h3 className="mt-6 text-xl font-bold text-white">
+                  {fw.title}
+                </h3>
+                <p className="mt-3 text-base text-slate-300 leading-relaxed">
+                  {fw.desc}
+                </p>
               </motion.article>
             ))}
           </motion.div>

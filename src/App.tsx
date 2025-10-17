@@ -3,6 +3,8 @@ import Main from "./components/Main";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Frontend from "./components/FrontendRoadmap";
 import Python from "./components/PythonRoadmap";
+import { Navigation } from "./components/Navigation";
+import { BackToTop } from "./components/BackToTop";
 import { AnimatePresence, motion } from "framer-motion";
 import { pageVariants } from "./utils/animations";
 
@@ -26,6 +28,7 @@ function App() {
   const location = useLocation();
   return (
     <>
+      <Navigation />
       <ScrollToTop />
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
@@ -55,6 +58,7 @@ function App() {
           />
         </Routes>
       </AnimatePresence>
+      <BackToTop />
     </>
   );
 }
@@ -66,7 +70,7 @@ function Page({ children }: { children: React.ReactNode }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen"
+      className="min-h-screen pt-16"
       style={{
         // Ensure content is always visible
         opacity: 1,
