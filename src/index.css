@@ -12,6 +12,8 @@ html {
   height: 100%;
   overflow-x: hidden;
   scroll-padding-top: 80px;
+  /* Prevent scroll blocking */
+  overscroll-behavior: none;
 }
 
 body {
@@ -30,6 +32,11 @@ body {
   min-height: 100vh;
   position: relative;
   scroll-behavior: smooth;
+  /* Prevent scroll blocking and improve performance */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  /* Ensure scroll events are not blocked */
+  touch-action: pan-y;
 }
 
 /* Enhanced scroll behavior */
@@ -274,12 +281,22 @@ main {
   overflow-x: hidden;
   overflow-y: visible;
   scroll-behavior: smooth;
+  /* Prevent scroll blocking */
+  overscroll-behavior: none;
+  /* Ensure proper scroll container */
+  position: relative;
+  z-index: 1;
 }
 
 /* Better scroll performance */
 section {
   scroll-margin-top: 80px;
   scroll-snap-align: start;
+  /* Prevent scroll blocking */
+  overscroll-behavior: none;
+  /* Ensure sections don't interfere with scroll */
+  position: relative;
+  z-index: 1;
 }
 
 /* Mobile performance optimizations */
@@ -308,16 +325,101 @@ section {
   
   /* Optimize scroll performance */
   body {
-    overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
   }
   
+  /* Disable hover effects on mobile */
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 0 !important;
+  }
+  
+  .group:hover .group-hover\:translate-x-1 {
+    transform: translateX(0) !important;
+  }
+  
+  .group:hover .group-hover\:ring-red-400\/40 {
+    --tw-ring-color: rgba(248, 113, 113, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-blue-400\/40 {
+    --tw-ring-color: rgba(96, 165, 250, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-green-400\/40 {
+    --tw-ring-color: rgba(74, 222, 128, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-yellow-400\/40 {
+    --tw-ring-color: rgba(250, 204, 21, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-cyan-400\/40 {
+    --tw-ring-color: rgba(34, 211, 238, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-pink-400\/40 {
+    --tw-ring-color: rgba(244, 114, 182, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-orange-400\/40 {
+    --tw-ring-color: rgba(251, 146, 60, 0.2) !important;
+  }
+  
+  .group:hover .group-hover\:ring-indigo-400\/40 {
+    --tw-ring-color: rgba(129, 140, 248, 0.2) !important;
+  }
 
   /* Reduce backdrop filter usage */
   .backdrop-blur-md {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
+  
+  /* Simplify glass card effects on mobile */
+  .glass-card {
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+  }
+  
+  /* Reduce shadow complexity on mobile */
+  .shadow-professional {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .shadow-professional-lg {
+    box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Critical scroll fixes */
+.motion-safe {
+  /* Prevent scroll blocking during animations */
+  pointer-events: auto;
+  touch-action: pan-y;
+}
+
+/* Fix Framer Motion scroll blocking */
+[data-framer-motion] {
+  /* Ensure motion elements don't block scroll */
+  pointer-events: auto;
+  touch-action: pan-y;
+  overscroll-behavior: none;
+}
+
+/* Fix AnimatePresence scroll issues */
+.framer-motion-container {
+  /* Ensure container doesn't block scroll */
+  overflow: visible;
+  pointer-events: auto;
+  touch-action: pan-y;
+}
+
+/* Prevent scroll blocking on animated elements */
+.motion-div {
+  /* Ensure motion divs don't interfere with scroll */
+  pointer-events: auto;
+  touch-action: pan-y;
+  overscroll-behavior: none;
 }
 
 /* Fix for iOS Safari scroll issues */

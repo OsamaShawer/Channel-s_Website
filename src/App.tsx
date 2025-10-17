@@ -14,22 +14,18 @@ import { BackToTop } from "./components/BackToTop";
 import PythonAssignments from "./components/PythonAssignments";
 import { AnimatePresence, motion } from "framer-motion";
 import { pageVariants } from "./utils/animations";
+import { scrollRestoration } from "./utils/scrollRestoration";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   React.useEffect(() => {
-    // Immediate scroll reset without animation
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // Use scroll restoration utility for better performance
+    scrollRestoration.resetScrollPosition();
 
-    // Force layout recalculation
-    document.body.offsetHeight;
-
-    // Small delay to ensure everything is reset
+    // Ensure scroll responsiveness after navigation
     const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 50);
+      scrollRestoration.ensureScrollResponsiveness();
+    }, 10);
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -42,7 +38,14 @@ function App() {
     <>
       <Navigation />
       <ScrollToTop />
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence
+        mode="wait"
+        initial={false}
+        onExitComplete={() => {
+          // Use scroll restoration utility to ensure scroll is not blocked
+          scrollRestoration.preventScrollBlocking();
+        }}
+      >
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
@@ -133,10 +136,9 @@ function App() {
 
 function Page({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
-    // Immediate scroll reset
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // Use scroll restoration utility
+    scrollRestoration.resetScrollPosition();
+    scrollRestoration.ensureScrollResponsiveness();
   }, []);
 
   return (
@@ -145,11 +147,14 @@ function Page({ children }: { children: React.ReactNode }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen pt-16"
+      className="min-h-screen pt-16 framer-motion-container"
       style={{
         opacity: 1,
         transform: "translateY(0)",
         overflow: "visible",
+        pointerEvents: "auto",
+        touchAction: "pan-y",
+        overscrollBehavior: "none",
       }}
     >
       {children}

@@ -24,6 +24,7 @@ import {
   mobileCardHover,
 } from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
+import { scrollRestoration } from "../utils/scrollRestoration";
 
 type Course = {
   name: string;
@@ -175,19 +176,39 @@ export default function Main() {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile device
+  // Detect mobile device and ensure scroll responsiveness
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
     };
 
     checkMobile();
+    scrollRestoration.ensureScrollResponsiveness();
+
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+
+    // Ensure scroll responsiveness on scroll events
+    const handleScroll = () => {
+      scrollRestoration.preventScrollBlocking();
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-x-hidden overflow-y-visible">
+    <main
+      className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-x-hidden overflow-y-visible motion-safe"
+      style={{
+        pointerEvents: "auto",
+        touchAction: "pan-y",
+        overscrollBehavior: "none",
+      }}
+    >
       <section className="relative isolate px-6 sm:px-8 lg:px-12">
         <AnimatedBlob />
         <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">

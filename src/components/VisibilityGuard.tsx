@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { scrollRestoration } from "../utils/scrollRestoration";
 
 interface VisibilityGuardProps {
   children: React.ReactNode;
@@ -8,7 +9,7 @@ interface VisibilityGuardProps {
 
 export function VisibilityGuard({
   children,
-  fallbackDelay = 500,
+  fallbackDelay = 300, // Reduced delay for faster responsiveness
   className = "",
 }: VisibilityGuardProps) {
   const [isVisible, setIsVisible] = useState(true);
@@ -17,6 +18,8 @@ export function VisibilityGuard({
     // Force visibility after a short delay to prevent invisible content
     const timer = setTimeout(() => {
       setIsVisible(true);
+      // Use scroll restoration utility
+      scrollRestoration.preventScrollBlocking();
     }, fallbackDelay);
 
     return () => clearTimeout(timer);
@@ -24,11 +27,14 @@ export function VisibilityGuard({
 
   return (
     <div
-      className={className}
+      className={`${className} motion-safe`}
       style={{
         opacity: isVisible ? 1 : 0,
-        transition: "opacity 0.3s ease-out",
+        transition: "opacity 0.2s ease-out", // Faster transition
         minHeight: "200px", // Ensure space is reserved
+        pointerEvents: "auto",
+        touchAction: "pan-y",
+        overscrollBehavior: "none",
       }}
     >
       {children}

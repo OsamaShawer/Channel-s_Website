@@ -1,10 +1,18 @@
 import { type Variants } from "framer-motion";
 
-// Mobile-optimized viewport configuration
+// Mobile detection utility
+export const isMobile = () => {
+  if (typeof window === "undefined") return false;
+  return window.innerWidth < 768 || "ontouchstart" in window;
+};
+
+// Mobile-optimized viewport configuration - prevent scroll blocking
 export const viewportConfig = {
   once: true,
   amount: 0.1,
   margin: "0px 0px -20% 0px",
+  // Prevent scroll blocking
+  rootMargin: "0px 0px -20% 0px",
 } as const;
 
 // Immediate viewport config for critical sections - mobile optimized
@@ -12,14 +20,34 @@ export const immediateViewportConfig = {
   once: true,
   amount: 0.05,
   margin: "0px 0px -10% 0px",
+  // Prevent scroll blocking
+  rootMargin: "0px 0px -10% 0px",
 } as const;
 
 // Mobile-specific viewport config with reduced margins
 export const mobileViewportConfig = {
   once: true,
-  amount: 0.2,
+  amount: 0.3,
   margin: "0px 0px -5% 0px",
+  // Prevent scroll blocking
+  rootMargin: "0px 0px -5% 0px",
 } as const;
+
+// Ultra-simple mobile animations
+export const mobileFadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
 
 // Mobile-optimized motion variants with reduced complexity
 export const fadeUp: Variants = {
@@ -80,6 +108,21 @@ export const staggerContainer: Variants = {
   },
 };
 
+// Mobile-specific stagger (faster)
+export const mobileStaggerContainer: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.03,
+      delayChildren: 0.01,
+      ease: "easeOut",
+    },
+  },
+};
+
 // Mobile-optimized card animations (reduced box-shadow for performance)
 export const cardHover: Variants = {
   rest: {
@@ -123,7 +166,7 @@ export const buttonHover: Variants = {
   },
 };
 
-// Mobile-optimized page transition variants
+// Mobile-optimized page transition variants - prevent scroll blocking
 export const pageVariants: Variants = {
   initial: {
     opacity: 0,
@@ -133,16 +176,16 @@ export const pageVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.25,
+      duration: 0.2, // Reduced duration for faster transitions
       ease: "easeOut",
-      delay: 0.02,
+      delay: 0.01, // Reduced delay
     },
   },
   exit: {
     opacity: 0,
-    y: -3,
+    y: -2, // Reduced movement
     transition: {
-      duration: 0.15,
+      duration: 0.1, // Faster exit
       ease: "easeIn",
     },
   },
@@ -194,5 +237,40 @@ export const touchButton: Variants = {
     transition: {
       duration: 0.1,
     },
+  },
+};
+
+// Ultra-simple mobile card animations (no hover effects)
+export const mobileCardSimple: Variants = {
+  rest: {
+    scale: 1,
+  },
+  tap: {
+    scale: 0.98,
+    transition: {
+      duration: 0.1,
+    },
+  },
+};
+
+// Mobile blob animations (reduced complexity)
+export const mobileBlobAnimation = {
+  y: [0, -5, 0],
+  x: [0, 3, 0],
+  transition: {
+    repeat: Infinity,
+    duration: 15,
+    ease: [0.4, 0, 0.6, 1] as const,
+  },
+};
+
+// Desktop blob animations
+export const desktopBlobAnimation = {
+  y: [0, -10, 0],
+  x: [0, 5, 0],
+  transition: {
+    repeat: Infinity,
+    duration: 20,
+    ease: [0.4, 0, 0.6, 1] as const,
   },
 };
