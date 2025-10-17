@@ -1,14 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  Code2,
-  Play,
-  Sparkles,
-  ChevronRight,
-  BookOpen,
-  Target,
-  Zap,
-  Star,
-} from "lucide-react";
+import { Code2, Play, Sparkles, ChevronRight, Zap, Star } from "lucide-react";
 import { fadeUp, immediateViewportConfig } from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 
@@ -51,38 +42,6 @@ const assignments: Assignment[] = [
     description:
       "Learn the basics of Python programming, including variables, data types, and simple operations.",
     icon: Code2,
-    status: "in-progress",
-  },
-  {
-    id: 2,
-    title: "Control Structures",
-    description:
-      "Master if statements, loops, and conditional logic to control program flow.",
-    icon: Target,
-    status: "in-progress",
-  },
-  {
-    id: 3,
-    title: "Functions and Modules",
-    description:
-      "Create reusable code with functions and organize your code with modules.",
-    icon: Zap,
-    status: "in-progress",
-  },
-  {
-    id: 4,
-    title: "Data Structures",
-    description:
-      "Work with lists, dictionaries, sets, and tuples to store and manipulate data.",
-    icon: BookOpen,
-    status: "in-progress",
-  },
-  {
-    id: 5,
-    title: "Object-Oriented Programming",
-    description:
-      "Learn classes, objects, inheritance, and encapsulation in Python.",
-    icon: Star,
     status: "in-progress",
   },
 ];
@@ -135,19 +94,19 @@ function PythonAssignments() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             className="mt-8 flex flex-wrap items-center justify-center gap-4"
           >
-            <div className="flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 border border-emerald-500/20">
+            <div className="flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors duration-100">
               <Star className="h-4 w-4 text-emerald-400" />
               <span className="text-sm text-emerald-300 font-medium">
                 Hands-On Learning
               </span>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-cyan-500/10 px-4 py-2 border border-cyan-500/20">
+            <div className="flex items-center gap-2 rounded-full bg-cyan-500/10 px-4 py-2 border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors duration-100">
               <Zap className="h-4 w-4 text-cyan-400" />
               <span className="text-sm text-cyan-300 font-medium">
                 Progressive Difficulty
               </span>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-teal-500/10 px-4 py-2 border border-teal-500/20">
+            <div className="flex items-center gap-2 rounded-full bg-teal-500/10 px-4 py-2 border border-teal-500/20 hover:bg-teal-500/20 transition-colors duration-100">
               <Code2 className="h-4 w-4 text-teal-400" />
               <span className="text-sm text-teal-300 font-medium">
                 Practical Skills
@@ -168,7 +127,7 @@ function PythonAssignments() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mb-12 text-center"
             >
-              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 border border-emerald-500/20 mb-4">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 border border-emerald-500/20 mb-4 hover:bg-emerald-500/20 transition-colors duration-100">
                 <Code2 className="h-4 w-4 text-emerald-400" />
                 <span className="text-sm text-emerald-300 font-medium">
                   Learning Path
@@ -202,14 +161,15 @@ function PythonAssignments() {
                   variants={fadeUp}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-300 hover:border-emerald-400/30 hover:bg-gradient-to-br hover:from-white/[0.08] hover:to-white/[0.04] hover:shadow-emerald-500/10 overflow-hidden"
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-100 hover:border-emerald-400/30 hover:bg-gradient-to-br hover:from-white/[0.08] hover:to-white/[0.04] hover:shadow-emerald-500/10 overflow-hidden"
                 >
                   {/* Decorative gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-300">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
                         <assignment.icon className="h-6 w-6 text-emerald-300" />
                       </div>
                       <div className="flex items-center gap-2">
@@ -256,11 +216,12 @@ function PythonAssignments() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 px-4 py-3 text-sm font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30 transition-all duration-300 hover:from-emerald-500/30 hover:to-cyan-500/30 hover:ring-emerald-400/50 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
+                      transition={{ duration: 0.1, ease: "easeOut" }}
+                      className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 px-4 py-3 text-sm font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30 transition-all duration-100 hover:from-emerald-500/30 hover:to-cyan-500/30 hover:ring-emerald-400/50 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
                     >
                       <Play className="h-4 w-4" />
                       <span>Start Assignment</span>
-                      <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-100" />
                     </motion.button>
                   </div>
                 </motion.article>
