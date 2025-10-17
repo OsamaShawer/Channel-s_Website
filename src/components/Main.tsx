@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import {
   BookOpen,
   Code2,
@@ -18,7 +19,9 @@ import {
 import {
   viewportConfig,
   immediateViewportConfig,
+  mobileViewportConfig,
   cardHover,
+  mobileCardHover,
 } from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 
@@ -103,24 +106,66 @@ const fieldsOfStudy: Field[] = [
 ];
 
 function AnimatedBlob() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Reduce animation complexity on mobile for better performance
+  const blobAnimation = isMobile
+    ? { y: [0, -10, 0], x: [0, 5, 0] }
+    : { y: [0, -20, 0], x: [0, 10, 0] };
+
+  const blobTransition = isMobile
+    ? { repeat: Infinity, duration: 8, ease: [0.4, 0, 0.6, 1] as const }
+    : { repeat: Infinity, duration: 10, ease: [0.4, 0, 0.6, 1] as const };
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
         aria-hidden
-        className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/40 via-fuchsia-500/40 to-sky-500/40 blur-3xl"
-        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+        className={`absolute -top-32 -right-32 ${
+          isMobile ? "h-64 w-64" : "h-96 w-96"
+        } rounded-full bg-gradient-to-br from-indigo-500/30 via-fuchsia-500/30 to-sky-500/30 ${
+          isMobile ? "blur-2xl" : "blur-3xl"
+        }`}
+        animate={blobAnimation}
+        transition={blobTransition}
       />
       <motion.div
         aria-hidden
-        className="absolute -bottom-32 -left-32 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-sky-500/30 via-violet-500/30 to-pink-500/30 blur-3xl"
-        animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 12,
-          ease: "easeInOut",
-          delay: 1,
-        }}
+        className={`absolute -bottom-32 -left-32 ${
+          isMobile ? "h-80 w-80" : "h-[28rem] w-[28rem]"
+        } rounded-full bg-gradient-to-tr from-sky-500/20 via-violet-500/20 to-pink-500/20 ${
+          isMobile ? "blur-2xl" : "blur-3xl"
+        }`}
+        animate={
+          isMobile
+            ? { y: [0, 10, 0], x: [0, -5, 0] }
+            : { y: [0, 20, 0], x: [0, -10, 0] }
+        }
+        transition={
+          isMobile
+            ? {
+                repeat: Infinity,
+                duration: 10,
+                ease: [0.4, 0, 0.6, 1] as const,
+                delay: 1,
+              }
+            : {
+                repeat: Infinity,
+                duration: 12,
+                ease: [0.4, 0, 0.6, 1] as const,
+                delay: 1,
+              }
+        }
       />
     </div>
   );
@@ -128,6 +173,19 @@ function AnimatedBlob() {
 
 export default function Main() {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-x-hidden overflow-y-visible">
       <section className="relative isolate px-6 sm:px-8 lg:px-12">
@@ -173,8 +231,10 @@ export default function Main() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={immediateViewportConfig}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={
+                isMobile ? mobileViewportConfig : immediateViewportConfig
+              }
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className="mb-16 text-center"
             >
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
@@ -189,12 +249,17 @@ export default function Main() {
             <motion.div
               initial="hidden"
               whileInView="show"
-              viewport={immediateViewportConfig}
+              viewport={
+                isMobile ? mobileViewportConfig : immediateViewportConfig
+              }
               variants={{
                 hidden: { opacity: 0 },
                 show: {
                   opacity: 1,
-                  transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+                  transition: {
+                    staggerChildren: isMobile ? 0.05 : 0.08,
+                    delayChildren: isMobile ? 0.02 : 0.05,
+                  },
                 },
               }}
               className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
@@ -207,9 +272,9 @@ export default function Main() {
                 return (
                   <motion.article
                     key={field.name}
-                    variants={cardHover}
+                    variants={isMobile ? mobileCardHover : cardHover}
                     initial="rest"
-                    whileHover="hover"
+                    whileHover={!isMobile ? "hover" : undefined}
                     whileTap="tap"
                     transition={{ duration: 0.1, ease: "easeOut" }}
                     role={isFrontend ? "button" : undefined}
@@ -290,8 +355,8 @@ export default function Main() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportConfig}
-            transition={{ duration: 0.6 }}
+            viewport={isMobile ? mobileViewportConfig : viewportConfig}
+            transition={{ duration: 0.5 }}
             className="mb-16 text-center"
           >
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
@@ -306,36 +371,67 @@ export default function Main() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {courses.map((course, idx) => {
               const isPython = course.name === "Python";
+              const isHTML = course.name === "HTML";
+              const isCSS = course.name === "CSS";
+              const isJavaScript = course.name === "JavaScript";
+              const isReact = course.name === "React";
+              const isExpress = course.name === "Express";
+              const isClickable =
+                isPython ||
+                isHTML ||
+                isCSS ||
+                isJavaScript ||
+                isReact ||
+                isExpress;
+
               const handleActivate = () => {
                 if (isPython) navigate("/roadmap/python");
+                if (isHTML) navigate("/roadmap/html");
+                if (isCSS) navigate("/roadmap/css");
+                if (isJavaScript) navigate("/roadmap/javascript");
+                if (isReact) navigate("/roadmap/react");
+                if (isExpress) navigate("/roadmap/express");
               };
+
               return (
                 <motion.article
                   key={course.name}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={viewportConfig}
+                  viewport={isMobile ? mobileViewportConfig : viewportConfig}
                   transition={{
-                    duration: 0.4,
-                    delay: idx * 0.05,
+                    duration: 0.3,
+                    delay: idx * (isMobile ? 0.03 : 0.05),
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
-                  role={isPython ? "button" : undefined}
-                  tabIndex={isPython ? 0 : -1}
+                  role={isClickable ? "button" : undefined}
+                  tabIndex={isClickable ? 0 : -1}
                   onClick={handleActivate}
                   onKeyDown={(e) => {
-                    if (!isPython) return;
+                    if (!isClickable) return;
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
                       handleActivate();
                     }
                   }}
                   aria-label={
-                    isPython ? "Open Python course roadmap" : undefined
+                    isPython
+                      ? "Open Python course roadmap"
+                      : isHTML
+                      ? "Open HTML course roadmap"
+                      : isCSS
+                      ? "Open CSS course roadmap"
+                      : isJavaScript
+                      ? "Open JavaScript course roadmap"
+                      : isReact
+                      ? "Open React course roadmap"
+                      : isExpress
+                      ? "Open Express course roadmap"
+                      : undefined
                   }
                   className={
                     "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
-                    (isPython ? "cursor-pointer" : "")
+                    (isClickable ? "cursor-pointer" : "")
                   }
                 >
                   <div className="flex items-start justify-between">

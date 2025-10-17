@@ -3,6 +3,12 @@ import Main from "./components/Main";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Frontend from "./components/FrontendRoadmap";
 import Python from "./components/PythonRoadmap";
+import HTML from "./components/HTMLRoadmap";
+import CSS from "./components/CSSRoadmap";
+import JavaScriptRoadmap from "./components/JavaScriptRoadmap";
+import ReactRoadmap from "./components/ReactRoadmap";
+import Angular from "./components/AngularRoadmap";
+import Express from "./components/ExpressRoadmap";
 import { Navigation } from "./components/Navigation";
 import { BackToTop } from "./components/BackToTop";
 import PythonAssignments from "./components/PythonAssignments";
@@ -67,6 +73,54 @@ function App() {
             element={
               <Page>
                 <PythonAssignments />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/html"
+            element={
+              <Page>
+                <HTML />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/css"
+            element={
+              <Page>
+                <CSS />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/javascript"
+            element={
+              <Page>
+                <JavaScriptRoadmap />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/react"
+            element={
+              <Page>
+                <ReactRoadmap />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/angular"
+            element={
+              <Page>
+                <Angular />
+              </Page>
+            }
+          />
+          <Route
+            path="/roadmap/express"
+            element={
+              <Page>
+                <Express />
               </Page>
             }
           />

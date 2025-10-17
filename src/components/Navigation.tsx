@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Home, Code2, BookOpen, Menu, X } from "lucide-react";
-import { useState } from "react";
-import { buttonHover } from "../utils/animations";
+import { useState, useEffect } from "react";
+import { buttonHover, touchButton } from "../utils/animations";
 
 export function Navigation() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const navItems = [
     { name: "Home", path: "/", icon: Home },
@@ -17,20 +18,31 @@ export function Navigation() {
 
   const isActive = (path: string) => location.pathname === path;
 
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/20 border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.button
-            variants={buttonHover}
+            variants={isMobile ? touchButton : buttonHover}
             initial="rest"
-            whileHover="hover"
+            whileHover={!isMobile ? "hover" : undefined}
             whileTap="tap"
             onClick={() => navigate("/")}
             className="flex items-center gap-3 text-white font-bold text-xl"
@@ -46,9 +58,9 @@ export function Navigation() {
             {navItems.map((item) => (
               <motion.button
                 key={item.path}
-                variants={buttonHover}
+                variants={isMobile ? touchButton : buttonHover}
                 initial="rest"
-                whileHover="hover"
+                whileHover={!isMobile ? "hover" : undefined}
                 whileTap="tap"
                 onClick={() => navigate(item.path)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-100 ${
@@ -65,9 +77,8 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            variants={buttonHover}
+            variants={touchButton}
             initial="rest"
-            whileHover="hover"
             whileTap="tap"
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-xl text-white hover:bg-white/10 transition-colors"
@@ -83,16 +94,15 @@ export function Navigation() {
             height: isOpen ? "auto" : 0,
             opacity: isOpen ? 1 : 0,
           }}
-          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="md:hidden overflow-hidden"
         >
           <div className="py-4 space-y-2 border-t border-white/10">
             {navItems.map((item) => (
               <motion.button
                 key={item.path}
-                variants={buttonHover}
+                variants={touchButton}
                 initial="rest"
-                whileHover="hover"
                 whileTap="tap"
                 onClick={() => {
                   navigate(item.path);

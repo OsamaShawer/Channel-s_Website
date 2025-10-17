@@ -139,56 +139,58 @@ function PythonRoadmap() {
                 practical exercises designed to reinforce your learning.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <motion.article
-                whileHover={{ scale: 1.02, y: -4 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1, ease: "easeOut" }}
-                onClick={handleAssignmentsClick}
-                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden cursor-pointer"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    handleAssignmentsClick();
-                  }
-                }}
-                aria-label="Open Python Assignments"
-              >
-                {/* Decorative gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+                <motion.article
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.1, ease: "easeOut" }}
+                  onClick={handleAssignmentsClick}
+                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleAssignmentsClick();
+                    }
+                  }}
+                  aria-label="Open Python Assignments"
+                >
+                  {/* Decorative gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
-                      <Code2 className="h-6 w-6 text-emerald-300" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
+                        <Code2 className="h-6 w-6 text-emerald-300" />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                        <span className="text-xs text-emerald-200 font-semibold">
+                          Active
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                      <span className="text-xs text-emerald-200 font-semibold">
-                        Active
-                      </span>
+                    <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
+                      Assignments
+                    </h3>
+                    <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
+                      Practice with carefully crafted assignments and questions
+                      that will strengthen your programming skills and enhance
+                      your logical thinking abilities.
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
+                      <div className="h-1 w-1 rounded-full bg-emerald-400"></div>
+                      <span>Interactive exercises</span>
+                    </div>
+                    <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-100">
+                      <span>Start learning</span>
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                  <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
-                    Assignments
-                  </h3>
-                  <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                    Practice with carefully crafted assignments and questions
-                    that will strengthen your programming skills and enhance
-                    your logical thinking abilities.
-                  </p>
-                  <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
-                    <div className="h-1 w-1 rounded-full bg-emerald-400"></div>
-                    <span>Interactive exercises</span>
-                  </div>
-                  <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-100">
-                    <span>Start learning</span>
-                    <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
-                  </div>
-                </div>
-              </motion.article>
+                </motion.article>
+              </div>
             </div>
           </div>
         </section>
@@ -218,11 +220,11 @@ function PythonRoadmap() {
               </span>
             </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-cyan-300 to-teal-300 bg-clip-text text-transparent">
-              Coding Challenges
+              Python Roadmap
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300 leading-relaxed">
-              Push your limits with progressively challenging coding problems
-              that will sharpen your problem-solving skills.
+              Follow our structured learning path to master Python from basics
+              to advanced concepts and modern development practices.
             </p>
           </motion.div>
           <motion.div
@@ -236,44 +238,48 @@ function PythonRoadmap() {
                 transition: { staggerChildren: 0.05, delayChildren: 0.02 },
               },
             }}
-            className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
-            <motion.article
-              variants={fadeUp}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
-            >
-              {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+                <motion.article
+                  variants={fadeUp}
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
+                >
+                  {/* Decorative gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
-              <div className="relative z-10">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-100">
-                    <Target className="h-6 w-6 text-cyan-300" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-100">
+                        <Target className="h-6 w-6 text-cyan-300" />
+                      </div>
+                      <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
+                        In Progress
+                      </span>
+                    </div>
+                    <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
+                      Roadmap
+                    </h3>
+                    <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
+                      Complete structured learning path covering Python
+                      fundamentals, data structures, OOP, libraries, and modern
+                      frameworks for building scalable applications and data
+                      science projects.
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-xs text-cyan-300">
+                      <div className="h-1 w-1 rounded-full bg-cyan-400"></div>
+                      <span>Step-by-step progression</span>
+                    </div>
+                    <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-100">
+                      <span>Start roadmap</span>
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
+                    </div>
                   </div>
-                  <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
-                    In Progress
-                  </span>
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
-                  Challenges
-                </h3>
-                <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                  Test your skills with carefully designed challenges and coding
-                  katas that progress from beginner to advanced levels, building
-                  your confidence step by step.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs text-cyan-300">
-                  <div className="h-1 w-1 rounded-full bg-cyan-400"></div>
-                  <span>Progressive difficulty</span>
-                </div>
-                <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-100">
-                  <span>Take challenge</span>
-                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
-                </div>
+                </motion.article>
               </div>
-            </motion.article>
+            </div>
           </motion.div>
         </div>
       </motion.section>
@@ -320,44 +326,47 @@ function PythonRoadmap() {
                 transition: { staggerChildren: 0.05, delayChildren: 0.02 },
               },
             }}
-            className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
-            <motion.article
-              variants={fadeUp}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"
-            >
-              {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+                <motion.article
+                  variants={fadeUp}
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"
+                >
+                  {/* Decorative gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
-              <div className="relative z-10">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-teal-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
-                    <Play className="h-6 w-6 text-emerald-300" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-teal-500/25 ring-1 ring-inset ring-emerald-400/20 group-hover:ring-emerald-400/40 transition-all duration-100">
+                        <Play className="h-6 w-6 text-emerald-300" />
+                      </div>
+                      <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
+                        In Progress
+                      </span>
+                    </div>
+                    <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
+                      Code in Videos
+                    </h3>
+                    <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
+                      Master Python through engaging video tutorials with
+                      step-by-step examples. Watch directly on our platform or
+                      follow along on YouTube for comprehensive explanations.
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
+                      <div className="h-1 w-1 rounded-full bg-emerald-400"></div>
+                      <span>Step-by-step tutorials</span>
+                    </div>
+                    <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-100">
+                      <span>Watch now</span>
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
+                    </div>
                   </div>
-                  <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
-                    In Progress
-                  </span>
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
-                  Code in Videos
-                </h3>
-                <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                  Master Python through engaging video tutorials with
-                  step-by-step examples. Watch directly on our platform or
-                  follow along on YouTube for comprehensive explanations.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
-                  <div className="h-1 w-1 rounded-full bg-emerald-400"></div>
-                  <span>Step-by-step tutorials</span>
-                </div>
-                <div className="mt-4 flex items-center text-xs text-emerald-300/70 group-hover:text-emerald-300 transition-colors duration-100">
-                  <span>Watch now</span>
-                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
-                </div>
+                </motion.article>
               </div>
-            </motion.article>
+            </div>
           </motion.div>
         </div>
       </motion.section>
@@ -404,44 +413,48 @@ function PythonRoadmap() {
                 transition: { staggerChildren: 0.05, delayChildren: 0.02 },
               },
             }}
-            className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
-            <motion.article
-              variants={fadeUp}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
-            >
-              {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+                <motion.article
+                  variants={fadeUp}
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
+                >
+                  {/* Decorative gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
-              <div className="relative z-10">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-100">
-                    <BookOpen className="h-6 w-6 text-cyan-300" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-teal-500/25 ring-1 ring-inset ring-cyan-400/20 group-hover:ring-cyan-400/40 transition-all duration-100">
+                        <BookOpen className="h-6 w-6 text-cyan-300" />
+                      </div>
+                      <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
+                        In Progress
+                      </span>
+                    </div>
+                    <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
+                      Full Explain in Text
+                    </h3>
+                    <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
+                      Discover comprehensive explanations about Python's
+                      history, features, and applications. For video
+                      explanations, our YouTube tutorials provide additional
+                      insights.
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-xs text-cyan-300">
+                      <div className="h-1 w-1 rounded-full bg-cyan-400"></div>
+                      <span>Comprehensive guides</span>
+                    </div>
+                    <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-100">
+                      <span>Explore knowledge</span>
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
+                    </div>
                   </div>
-                  <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
-                    In Progress
-                  </span>
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
-                  Facts & Information About Python
-                </h3>
-                <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                  Discover comprehensive explanations about Python's history,
-                  features, and applications. For video explanations, our
-                  YouTube tutorials provide additional insights.
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs text-cyan-300">
-                  <div className="h-1 w-1 rounded-full bg-cyan-400"></div>
-                  <span>Comprehensive guides</span>
-                </div>
-                <div className="mt-4 flex items-center text-xs text-cyan-300/70 group-hover:text-cyan-300 transition-colors duration-100">
-                  <span>Explore knowledge</span>
-                  <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
-                </div>
+                </motion.article>
               </div>
-            </motion.article>
+            </div>
           </motion.div>
         </div>
 
