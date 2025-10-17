@@ -13,30 +13,53 @@ import {
 } from "lucide-react";
 import {
   fadeUp,
+  mobileFadeUp,
   staggerContainer,
+  mobileStaggerContainer,
   viewportConfig,
   immediateViewportConfig,
+  mobileViewportConfig,
+  mobileBlobAnimation,
+  desktopBlobAnimation,
+  isMobile,
 } from "../utils/animations";
 
 function AnimatedBlob() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    setMobile(isMobile());
+  }, []);
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-green-500/20 via-emerald-500/20 to-teal-500/20 blur-3xl"
-        animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+        animate={mobile ? mobileBlobAnimation : desktopBlobAnimation}
       />
       <motion.div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-teal-500/15 via-green-500/15 to-emerald-500/15 blur-3xl"
-        animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 25,
-          ease: "easeInOut",
-          delay: 2,
-        }}
+        animate={
+          mobile
+            ? {
+                ...mobileBlobAnimation,
+                transition: {
+                  ...mobileBlobAnimation.transition,
+                  delay: 2,
+                  duration: 18,
+                },
+              }
+            : {
+                ...desktopBlobAnimation,
+                transition: {
+                  ...desktopBlobAnimation.transition,
+                  delay: 2,
+                  duration: 25,
+                },
+              }
+        }
       />
     </div>
   );
@@ -45,12 +68,16 @@ function AnimatedBlob() {
 function ExpressRoadmap() {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
     // Ensure content is visible after component mounts
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 100);
+
+    // Check for mobile
+    setMobile(isMobile());
 
     return () => clearTimeout(timer);
   }, []);
@@ -71,7 +98,7 @@ function ExpressRoadmap() {
       <motion.section
         key="express-hero"
         className="relative isolate px-6 sm:px-8 lg:px-12"
-        variants={fadeUp}
+        variants={mobile ? mobileFadeUp : fadeUp}
         initial="hidden"
         animate="visible"
       >
@@ -141,18 +168,18 @@ function ExpressRoadmap() {
       <motion.section
         key="assignments"
         className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={mobile ? mobileFadeUp : fadeUp}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={mobile ? mobileFadeUp : fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -172,7 +199,7 @@ function ExpressRoadmap() {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
               <motion.article
-                variants={fadeUp}
+                variants={mobile ? mobileFadeUp : fadeUp}
                 initial="hidden"
                 animate={isLoaded ? "visible" : "hidden"}
                 whileHover={{ scale: 1.02, y: -4 }}
@@ -232,18 +259,18 @@ function ExpressRoadmap() {
       <motion.section
         key="roadmap"
         className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={mobile ? mobileFadeUp : fadeUp}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={mobile ? mobileFadeUp : fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -262,16 +289,16 @@ function ExpressRoadmap() {
             </p>
           </motion.div>
           <motion.div
-            variants={staggerContainer}
+            variants={mobile ? mobileStaggerContainer : staggerContainer}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={immediateViewportConfig}
+            viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
           >
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
                 <motion.article
-                  variants={fadeUp}
+                  variants={mobile ? mobileFadeUp : fadeUp}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"
@@ -317,18 +344,18 @@ function ExpressRoadmap() {
       <motion.section
         key="videos"
         className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={mobile ? mobileFadeUp : fadeUp}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={mobile ? mobileFadeUp : fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -346,16 +373,16 @@ function ExpressRoadmap() {
             </p>
           </motion.div>
           <motion.div
-            variants={staggerContainer}
+            variants={mobile ? mobileStaggerContainer : staggerContainer}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={immediateViewportConfig}
+            viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
           >
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
                 <motion.article
-                  variants={fadeUp}
+                  variants={mobile ? mobileFadeUp : fadeUp}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-green-300/50 hover:shadow-green-200/20 overflow-hidden"
@@ -400,18 +427,18 @@ function ExpressRoadmap() {
       <motion.section
         key="facts"
         className="relative px-4 pb-28 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={mobile ? mobileFadeUp : fadeUp}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={mobile ? mobileFadeUp : fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -429,16 +456,16 @@ function ExpressRoadmap() {
             </p>
           </motion.div>
           <motion.div
-            variants={staggerContainer}
+            variants={mobile ? mobileStaggerContainer : staggerContainer}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={immediateViewportConfig}
+            viewport={mobile ? mobileViewportConfig : immediateViewportConfig}
           >
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
                 <motion.article
-                  variants={fadeUp}
+                  variants={mobile ? mobileFadeUp : fadeUp}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"

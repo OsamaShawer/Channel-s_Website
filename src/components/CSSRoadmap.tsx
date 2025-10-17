@@ -19,32 +19,47 @@ import {
   viewportConfig,
   immediateViewportConfig,
   mobileViewportConfig,
-  mobileCardSimple,
-  cardHover,
   mobileBlobAnimation,
   desktopBlobAnimation,
   isMobile,
 } from "../utils/animations";
 
 function AnimatedBlob() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    setMobile(isMobile());
+  }, []);
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-purple-500/20 blur-3xl"
-        animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+        animate={mobile ? mobileBlobAnimation : desktopBlobAnimation}
       />
       <motion.div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-purple-500/15 via-blue-500/15 to-indigo-500/15 blur-3xl"
-        animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 25,
-          ease: "easeInOut",
-          delay: 2,
-        }}
+        animate={
+          mobile
+            ? {
+                ...mobileBlobAnimation,
+                transition: {
+                  ...mobileBlobAnimation.transition,
+                  delay: 2,
+                  duration: 18,
+                },
+              }
+            : {
+                ...desktopBlobAnimation,
+                transition: {
+                  ...desktopBlobAnimation.transition,
+                  delay: 2,
+                  duration: 25,
+                },
+              }
+        }
       />
     </div>
   );
@@ -53,6 +68,7 @@ function AnimatedBlob() {
 function CSSRoadmap() {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
     // Ensure content is visible after component mounts
@@ -60,12 +76,22 @@ function CSSRoadmap() {
       setIsLoaded(true);
     }, 100);
 
+    // Check for mobile
+    setMobile(isMobile());
+
     return () => clearTimeout(timer);
   }, []);
 
   const handleAssignmentsClick = () => {
     navigate("/roadmap/css/assignments");
   };
+
+  // Choose animation variants based on device
+  const fadeVariant = mobile ? mobileFadeUp : fadeUp;
+  const staggerVariant = mobile ? mobileStaggerContainer : staggerContainer;
+  const viewportVariant = mobile
+    ? mobileViewportConfig
+    : immediateViewportConfig;
 
   return (
     <main
@@ -79,7 +105,7 @@ function CSSRoadmap() {
       <motion.section
         key="css-hero"
         className="relative isolate px-6 sm:px-8 lg:px-12"
-        variants={fadeUp}
+        variants={fadeVariant}
         initial="hidden"
         animate="visible"
       >
@@ -88,7 +114,7 @@ function CSSRoadmap() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: mobile ? 0.4 : 0.7, ease: "easeOut" }}
             className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
           >
             <Sparkles className="h-5 w-5 text-blue-300" />
@@ -100,7 +126,11 @@ function CSSRoadmap() {
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
+            transition={{
+              duration: mobile ? 0.5 : 0.75,
+              ease: "easeOut",
+              delay: 0.05,
+            }}
             className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent leading-tight"
           >
             CSS Styling Language
@@ -109,7 +139,11 @@ function CSSRoadmap() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            transition={{
+              duration: mobile ? 0.4 : 0.7,
+              ease: "easeOut",
+              delay: 0.1,
+            }}
             className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light"
           >
             CSS (Cascading Style Sheets) is the language that brings websites to
@@ -120,7 +154,11 @@ function CSSRoadmap() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            transition={{
+              duration: mobile ? 0.4 : 0.7,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
             className="mt-8 flex flex-wrap items-center justify-center gap-4"
           >
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
@@ -149,18 +187,18 @@ function CSSRoadmap() {
       <motion.section
         key="assignments"
         className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={fadeVariant}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={viewportVariant}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={fadeVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -180,7 +218,7 @@ function CSSRoadmap() {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
               <motion.article
-                variants={fadeUp}
+                variants={fadeVariant}
                 initial="hidden"
                 animate={isLoaded ? "visible" : "hidden"}
                 whileHover={{ scale: 1.02, y: -4 }}
@@ -240,18 +278,18 @@ function CSSRoadmap() {
       <motion.section
         key="roadmap"
         className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={fadeVariant}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={viewportVariant}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={fadeVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -269,16 +307,16 @@ function CSSRoadmap() {
             </p>
           </motion.div>
           <motion.div
-            variants={staggerContainer}
+            variants={staggerVariant}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={immediateViewportConfig}
+            viewport={viewportVariant}
           >
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
                 <motion.article
-                  variants={fadeUp}
+                  variants={fadeVariant}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-indigo-300/50 hover:shadow-indigo-200/20 overflow-hidden"
@@ -324,18 +362,18 @@ function CSSRoadmap() {
       <motion.section
         key="videos"
         className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={fadeVariant}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={viewportVariant}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={fadeVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -353,16 +391,16 @@ function CSSRoadmap() {
             </p>
           </motion.div>
           <motion.div
-            variants={staggerContainer}
+            variants={staggerVariant}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={immediateViewportConfig}
+            viewport={viewportVariant}
           >
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
                 <motion.article
-                  variants={fadeUp}
+                  variants={fadeVariant}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-blue-300/50 hover:shadow-blue-200/20 overflow-hidden"
@@ -407,18 +445,18 @@ function CSSRoadmap() {
       <motion.section
         key="facts"
         className="relative px-4 pb-28 sm:px-6 lg:px-8"
-        variants={fadeUp}
+        variants={fadeVariant}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={immediateViewportConfig}
+        viewport={viewportVariant}
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
-            variants={fadeUp}
+            variants={fadeVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={mobile ? mobileViewportConfig : viewportConfig}
             className="mb-12 text-center"
           >
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
@@ -436,16 +474,16 @@ function CSSRoadmap() {
             </p>
           </motion.div>
           <motion.div
-            variants={staggerContainer}
+            variants={staggerVariant}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={immediateViewportConfig}
+            viewport={viewportVariant}
           >
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
                 <motion.article
-                  variants={fadeUp}
+                  variants={fadeVariant}
                   whileHover={{ scale: 1.02, y: -4 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-indigo-300/50 hover:shadow-indigo-200/20 overflow-hidden"

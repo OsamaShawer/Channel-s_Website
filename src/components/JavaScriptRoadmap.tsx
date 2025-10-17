@@ -16,27 +16,47 @@ import {
   staggerContainer,
   viewportConfig,
   immediateViewportConfig,
+  mobileBlobAnimation,
+  desktopBlobAnimation,
+  isMobile,
 } from "../utils/animations";
 
 function AnimatedBlob() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    setMobile(isMobile());
+  }, []);
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-yellow-500/20 via-orange-500/20 to-red-500/20 blur-3xl"
-        animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+        animate={mobile ? mobileBlobAnimation : desktopBlobAnimation}
       />
       <motion.div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-red-500/15 via-yellow-500/15 to-orange-500/15 blur-3xl"
-        animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 25,
-          ease: "easeInOut",
-          delay: 2,
-        }}
+        animate={
+          mobile
+            ? {
+                ...mobileBlobAnimation,
+                transition: {
+                  ...mobileBlobAnimation.transition,
+                  delay: 2,
+                  duration: 18,
+                },
+              }
+            : {
+                ...desktopBlobAnimation,
+                transition: {
+                  ...desktopBlobAnimation.transition,
+                  delay: 2,
+                  duration: 25,
+                },
+              }
+        }
       />
     </div>
   );
