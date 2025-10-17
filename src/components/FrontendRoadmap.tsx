@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Code2, Layout, Palette, Atom, Sparkles, Zap } from "lucide-react";
-import { fadeUp, staggerContainer, viewportConfig } from "../utils/animations";
+import { fadeUp, staggerContainer, viewportConfig, immediateViewportConfig } from "../utils/animations";
+import { useEffect, useState } from "react";
 
 function AnimatedBlob() {
   return (
@@ -27,8 +28,25 @@ function AnimatedBlob() {
 }
 
 export default function FrontendRoadmap() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Ensure content is visible after component mounts
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+    <main 
+      className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white"
+      style={{
+        opacity: isLoaded ? 1 : 0,
+        transition: 'opacity 0.3s ease-in-out'
+      }}
+    >
       {/* Hero / Introduction */}
       <motion.section
         key="frontend-hero"
@@ -78,8 +96,9 @@ export default function FrontendRoadmap() {
         className="relative px-6 pb-32 sm:px-8 lg:px-12"
         variants={fadeUp}
         initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={viewportConfig}
+        viewport={immediateViewportConfig}
       >
         <div className="mx-auto max-w-7xl">
           <motion.div
@@ -91,21 +110,26 @@ export default function FrontendRoadmap() {
           >
             <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional mb-6">
               <Code2 className="h-5 w-5 text-sky-400" />
-              <span className="text-sm font-medium text-slate-200">Introduction</span>
+              <span className="text-sm font-medium text-slate-200">
+                Introduction
+              </span>
             </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
               What Is Frontend Development?
             </h2>
             <p className="mx-auto mt-6 max-w-4xl text-lg text-slate-300 font-light leading-relaxed">
-              Frontend development is the art and science of creating the visual and interactive parts of websites and web applications that users see and interact with directly.
+              Frontend development is the art and science of creating the visual
+              and interactive parts of websites and web applications that users
+              see and interact with directly.
             </p>
           </motion.div>
 
           <motion.div
             variants={staggerContainer}
             initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={immediateViewportConfig}
             className="grid grid-cols-1 gap-8 lg:grid-cols-2"
           >
             <motion.div
@@ -116,12 +140,16 @@ export default function FrontendRoadmap() {
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/30 to-violet-500/30 ring-1 ring-inset ring-white/20 shadow-professional">
                   <Layout className="h-7 w-7 text-sky-200" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">User Interface (UI)</h3>
+                <h3 className="text-2xl font-bold text-white">
+                  User Interface (UI)
+                </h3>
               </div>
               <p className="text-base text-slate-300 leading-relaxed">
-                Frontend developers create the visual elements that users interact with - buttons, forms, navigation menus, 
-                layouts, and all the visual components that make a website beautiful and functional. This includes 
-                responsive design that works perfectly on desktop, tablet, and mobile devices.
+                Frontend developers create the visual elements that users
+                interact with - buttons, forms, navigation menus, layouts, and
+                all the visual components that make a website beautiful and
+                functional. This includes responsive design that works perfectly
+                on desktop, tablet, and mobile devices.
               </p>
             </motion.div>
 
@@ -133,12 +161,16 @@ export default function FrontendRoadmap() {
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/30 to-cyan-500/30 ring-1 ring-inset ring-white/20 shadow-professional">
                   <Zap className="h-7 w-7 text-emerald-200" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">User Experience (UX)</h3>
+                <h3 className="text-2xl font-bold text-white">
+                  User Experience (UX)
+                </h3>
               </div>
               <p className="text-base text-slate-300 leading-relaxed">
-                Beyond just looks, frontend development focuses on creating smooth, intuitive user experiences. 
-                This includes animations, interactions, loading states, and ensuring that users can easily navigate 
-                and accomplish their goals on your website or application.
+                Beyond just looks, frontend development focuses on creating
+                smooth, intuitive user experiences. This includes animations,
+                interactions, loading states, and ensuring that users can easily
+                navigate and accomplish their goals on your website or
+                application.
               </p>
             </motion.div>
           </motion.div>
@@ -151,37 +183,52 @@ export default function FrontendRoadmap() {
             className="mt-12 glass-card p-8 rounded-3xl shadow-professional-lg backdrop-blur"
           >
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Why Frontend Development Matters</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Why Frontend Development Matters
+              </h3>
               <p className="text-lg text-slate-300 font-light leading-relaxed max-w-3xl mx-auto">
-                Frontend development is the bridge between design and functionality. It's where creativity meets 
-                technology to create digital experiences that are not only beautiful but also fast, accessible, 
-                and user-friendly.
+                Frontend development is the bridge between design and
+                functionality. It's where creativity meets technology to create
+                digital experiences that are not only beautiful but also fast,
+                accessible, and user-friendly.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 flex items-center justify-center">
                   <span className="text-2xl">🎨</span>
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">Creative Expression</h4>
-                <p className="text-sm text-slate-400">Bring designs to life with code</p>
+                <h4 className="text-lg font-semibold text-white mb-2">
+                  Creative Expression
+                </h4>
+                <p className="text-sm text-slate-400">
+                  Bring designs to life with code
+                </p>
               </div>
-              
+
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center">
                   <span className="text-2xl">⚡</span>
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">Performance</h4>
-                <p className="text-sm text-slate-400">Build fast, responsive applications</p>
+                <h4 className="text-lg font-semibold text-white mb-2">
+                  Performance
+                </h4>
+                <p className="text-sm text-slate-400">
+                  Build fast, responsive applications
+                </p>
               </div>
-              
+
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center">
                   <span className="text-2xl">🌐</span>
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">Accessibility</h4>
-                <p className="text-sm text-slate-400">Create inclusive digital experiences</p>
+                <h4 className="text-lg font-semibold text-white mb-2">
+                  Accessibility
+                </h4>
+                <p className="text-sm text-slate-400">
+                  Create inclusive digital experiences
+                </p>
               </div>
             </div>
           </motion.div>
@@ -194,8 +241,9 @@ export default function FrontendRoadmap() {
         className="relative px-6 pb-32 sm:px-8 lg:px-12"
         variants={fadeUp}
         initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={viewportConfig}
+        viewport={immediateViewportConfig}
       >
         <div className="mx-auto max-w-7xl">
           <motion.div
@@ -216,8 +264,9 @@ export default function FrontendRoadmap() {
           <motion.div
             variants={staggerContainer}
             initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={immediateViewportConfig}
             className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
             {[
@@ -240,6 +289,7 @@ export default function FrontendRoadmap() {
               <motion.article
                 key={item.title}
                 variants={fadeUp}
+                animate={isLoaded ? "visible" : "hidden"}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-white/30 hover:shadow-white/10"
@@ -270,8 +320,9 @@ export default function FrontendRoadmap() {
         className="relative px-4 pb-28 sm:px-6 lg:px-8"
         variants={fadeUp}
         initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
         whileInView="visible"
-        viewport={viewportConfig}
+        viewport={immediateViewportConfig}
       >
         <div className="mx-auto max-w-7xl">
           <motion.div
@@ -292,8 +343,9 @@ export default function FrontendRoadmap() {
           <motion.div
             variants={staggerContainer}
             initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
             whileInView="visible"
-            viewport={viewportConfig}
+            viewport={immediateViewportConfig}
             className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
             {[
@@ -316,6 +368,7 @@ export default function FrontendRoadmap() {
               <motion.article
                 key={fw.title}
                 variants={fadeUp}
+                animate={isLoaded ? "visible" : "hidden"}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 shadow-professional-lg backdrop-blur transition-all duration-300 hover:border-white/20"

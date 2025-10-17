@@ -2,31 +2,31 @@ import { type Variants } from "framer-motion";
 
 // Standard viewport configuration for reliable triggering
 export const viewportConfig = {
-  once: false,
-  amount: 0.2,
-  margin: "0px 0px -10% 0px",
+  once: true,
+  amount: 0.1,
+  margin: "0px 0px -20% 0px",
 } as const;
 
 // Immediate viewport config for critical sections
 export const immediateViewportConfig = {
-  once: false,
-  amount: 0.1,
-  margin: "0px 0px -5% 0px",
+  once: true,
+  amount: 0.05,
+  margin: "0px 0px -10% 0px",
 } as const;
 
 // Professional motion variants with enhanced easing
 export const fadeUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 40,
-    scale: 0.95,
+    y: 20,
+    scale: 0.98,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.7,
+      duration: 0.5,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
