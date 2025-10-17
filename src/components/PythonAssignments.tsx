@@ -12,8 +12,6 @@ import {
 import { fadeUp, immediateViewportConfig } from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 
-
-
 function AnimatedBlob() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -91,7 +89,7 @@ const assignments: Assignment[] = [
 
 function PythonAssignments() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-white">
+    <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-white smooth-scroll">
       {/* Hero / Header Section */}
       <motion.section
         key="python-assignments-hero"

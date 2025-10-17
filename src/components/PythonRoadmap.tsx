@@ -45,7 +45,7 @@ function PythonRoadmap() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold">
+    <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll">
       {/* Hero / Introduction */}
       <motion.section
         key="python-hero"

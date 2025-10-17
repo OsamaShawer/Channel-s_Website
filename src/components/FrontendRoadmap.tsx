@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { Code2, Layout, Palette, Atom, Sparkles, Zap } from "lucide-react";
-import { fadeUp, staggerContainer, viewportConfig, immediateViewportConfig } from "../utils/animations";
+import {
+  fadeUp,
+  staggerContainer,
+  viewportConfig,
+  immediateViewportConfig,
+} from "../utils/animations";
 import { useEffect, useState } from "react";
 
 function AnimatedBlob() {
@@ -40,11 +45,11 @@ export default function FrontendRoadmap() {
   }, []);
 
   return (
-    <main 
-      className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white"
+    <main
+      className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white smooth-scroll"
       style={{
         opacity: isLoaded ? 1 : 0,
-        transition: 'opacity 0.3s ease-in-out'
+        transition: "opacity 0.3s ease-in-out",
       }}
     >
       {/* Hero / Introduction */}

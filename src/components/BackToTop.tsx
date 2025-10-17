@@ -20,8 +20,15 @@ export function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
+    // Reset all scroll positions
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    // Also handle smooth scrolling for better UX
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: "smooth",
     });
   };

@@ -129,7 +129,7 @@ function AnimatedBlob() {
 export default function Main() {
   const navigate = useNavigate();
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden">
+    <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-x-hidden overflow-y-visible">
       <section className="relative isolate px-6 sm:px-8 lg:px-12">
         <AnimatedBlob />
         <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">

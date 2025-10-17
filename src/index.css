@@ -9,24 +9,51 @@
 html {
   scroll-behavior: smooth;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  height: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  background-attachment: fixed;
   color: #ffffff;
   line-height: 1.6;
   letter-spacing: -0.01em;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Enhanced scroll behavior */
+* {
+  scroll-behavior: smooth;
 }
 
 /* Prevent layout shifts during animations */
 .motion-safe {
   will-change: transform, opacity;
+}
+
+/* Smooth scrolling for all elements */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-}
+
+/* Fix for mobile scroll issues */
+@media (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    -webkit-  }
 }
 
 /* Ensure proper stacking context for animated elements */
@@ -174,4 +201,27 @@ section {
     transition-duration: 0.01ms !important;
   }
   
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fix for scroll restoration issues */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Ensure proper scroll container behavior */
+.scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-  scroll-behavior: smooth;
+}
+
+/* Fix for iOS Safari scroll issues */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-  }
 }
