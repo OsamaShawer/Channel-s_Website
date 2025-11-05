@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import {
   Code2,
   BookOpen,
@@ -11,32 +9,17 @@ import {
   Star,
   Zap,
 } from "lucide-react";
-import {
-  fadeUp,
-  staggerContainer,
-  viewportConfig,
-  immediateViewportConfig,
-} from "../utils/animations";
 
-function AnimatedBlob() {
+function StaticBlob() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <motion.div
+      <div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-cyan-500/20 blur-3xl"
-        animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-cyan-500/15 via-emerald-500/15 to-teal-500/15 blur-3xl"
-        animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 25,
-          ease: "easeInOut",
-          delay: 2,
-        }}
       />
     </div>
   );
@@ -44,78 +27,36 @@ function AnimatedBlob() {
 
 function PythonRoadmap() {
   const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Ensure content is visible after component mounts
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleAssignmentsClick = () => {
     navigate("/roadmap/python/assignments");
   };
 
   return (
-    <main
-      className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll"
-      style={{
-        opacity: isLoaded ? 1 : 0,
-        transition: "opacity 0.3s ease-in-out",
-      }}
-    >
+    <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll">
       {/* Hero / Introduction */}
-      <motion.section
-        key="python-hero"
-        className="relative isolate px-6 sm:px-8 lg:px-12"
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-      >
-        <AnimatedBlob />
+      <section className="relative isolate px-6 sm:px-8 lg:px-12">
+        <StaticBlob />
         <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
-          >
+          <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-5 w-5 text-emerald-300" />
             <span className="text-base font-medium text-slate-200">
               TD Cousins Academy
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
-            className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-emerald-400 via-green-300 to-cyan-400 bg-clip-text text-transparent leading-tight"
-          >
+          <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-emerald-400 via-green-300 to-cyan-400 bg-clip-text text-transparent leading-tight">
             Python Programming Language
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light"
-          >
+          <p className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light">
             Python is one of the most famous programming languages, used in many
             domains such as web development, data science, AI, automation, and
             more. Its simple syntax and powerful capabilities make it perfect
             for beginners and experts alike.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
               <Star className="h-5 w-5 text-emerald-300" />
               <span className="text-base text-emerald-200 font-semibold">
@@ -134,28 +75,14 @@ function PythonRoadmap() {
                 Versatile
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Assignments */}
-      <motion.section
-        key="assignments"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Code2 className="h-5 w-5 text-emerald-300" />
               <span className="text-base text-emerald-200 font-semibold">
@@ -169,16 +96,10 @@ function PythonRoadmap() {
               Build your Python skills through interactive assignments and
               practical exercises designed to reinforce your learning.
             </p>
-          </motion.div>
+          </div>
           <div className="flex justify-center">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-              <motion.article
-                variants={fadeUp}
-                initial="hidden"
-                animate={isLoaded ? "visible" : "hidden"}
-                whileHover={{ scale: 1.02, y: -4 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1, ease: "easeOut" }}
+              <article
                 onClick={handleAssignmentsClick}
                 className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden cursor-pointer"
                 role="button"
@@ -200,7 +121,7 @@ function PythonRoadmap() {
                       <Code2 className="h-6 w-6 text-emerald-300" />
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                      <div className="h-2 w-2 rounded-full bg-emerald-400"></div>
                       <span className="text-xs text-emerald-200 font-semibold">
                         Active
                       </span>
@@ -223,30 +144,16 @@ function PythonRoadmap() {
                     <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                   </div>
                 </div>
-              </motion.article>
+              </article>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Challenges */}
-      <motion.section
-        key="challenges"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Target className="h-5 w-5 text-cyan-300" />
               <span className="text-base text-cyan-200 font-semibold">
@@ -260,22 +167,11 @@ function PythonRoadmap() {
               Follow our structured learning path to master Python from basics
               to advanced concepts and modern development practices.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={immediateViewportConfig}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden">
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
@@ -306,31 +202,17 @@ function PythonRoadmap() {
                       <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Code in Videos */}
-      <motion.section
-        key="videos"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Play className="h-5 w-5 text-emerald-300" />
               <span className="text-base text-emerald-200 font-semibold">
@@ -344,22 +226,11 @@ function PythonRoadmap() {
               Learn through engaging video content with real-time coding
               examples and detailed explanations.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={immediateViewportConfig}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden"
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-emerald-300/50 hover:shadow-emerald-200/20 overflow-hidden">
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
@@ -389,31 +260,17 @@ function PythonRoadmap() {
                       <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Facts & Information */}
-      <motion.section
-        key="facts"
-        className="relative px-4 pb-28 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-28 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <BookOpen className="h-5 w-5 text-cyan-300" />
               <span className="text-base text-cyan-200 font-semibold">
@@ -427,22 +284,11 @@ function PythonRoadmap() {
               Deep dive into Python's ecosystem with comprehensive guides, best
               practices, and expert insights.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={immediateViewportConfig}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden"
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-cyan-300/50 hover:shadow-cyan-200/20 overflow-hidden">
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
@@ -473,26 +319,19 @@ function PythonRoadmap() {
                       <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
+        <div
           aria-hidden
           className="pointer-events-none absolute inset-0 overflow-hidden"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
         >
-          <motion.div
-            className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-emerald-500/15 via-cyan-500/15 to-teal-500/15 blur-3xl"
-            animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </motion.section>
+          <div className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-emerald-500/15 via-cyan-500/15 to-teal-500/15 blur-3xl" />
+        </div>
+      </section>
     </main>
   );
 }

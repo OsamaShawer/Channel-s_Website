@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import {
   Code2,
   BookOpen,
@@ -11,52 +9,17 @@ import {
   Star,
   Zap,
 } from "lucide-react";
-import {
-  fadeUp,
-  staggerContainer,
-  viewportConfig,
-  immediateViewportConfig,
-  mobileBlobAnimation,
-  desktopBlobAnimation,
-  isMobile,
-} from "../utils/animations";
 
-function AnimatedBlob() {
-  const [mobile, setMobile] = useState(false);
-
-  useEffect(() => {
-    setMobile(isMobile());
-  }, []);
-
+function StaticBlob() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <motion.div
+      <div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-yellow-500/20 via-orange-500/20 to-red-500/20 blur-3xl"
-        animate={mobile ? mobileBlobAnimation : desktopBlobAnimation}
       />
-      <motion.div
+      <div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-red-500/15 via-yellow-500/15 to-orange-500/15 blur-3xl"
-        animate={
-          mobile
-            ? {
-                ...mobileBlobAnimation,
-                transition: {
-                  ...mobileBlobAnimation.transition,
-                  delay: 2,
-                  duration: 18,
-                },
-              }
-            : {
-                ...desktopBlobAnimation,
-                transition: {
-                  ...desktopBlobAnimation.transition,
-                  delay: 2,
-                  duration: 25,
-                },
-              }
-        }
       />
     </div>
   );
@@ -64,78 +27,36 @@ function AnimatedBlob() {
 
 function JavaScriptRoadmap() {
   const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Ensure content is visible after component mounts
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleAssignmentsClick = () => {
     navigate("/roadmap/javascript/assignments");
   };
 
   return (
-    <main
-      className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll"
-      style={{
-        opacity: isLoaded ? 1 : 0,
-        transition: "opacity 0.3s ease-in-out",
-      }}
-    >
+    <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll">
       {/* Hero / Introduction */}
-      <motion.section
-        key="javascript-hero"
-        className="relative isolate px-6 sm:px-8 lg:px-12"
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-      >
-        <AnimatedBlob />
+      <section className="relative isolate px-6 sm:px-8 lg:px-12">
+        <StaticBlob />
         <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
-          >
+          <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-5 w-5 text-yellow-300" />
             <span className="text-base font-medium text-slate-200">
               TD Cousins Academy
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
-            className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-yellow-400 via-orange-300 to-red-400 bg-clip-text text-transparent leading-tight"
-          >
+          <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-yellow-400 via-orange-300 to-red-400 bg-clip-text text-transparent leading-tight">
             JavaScript Programming Language
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light"
-          >
+          <p className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light">
             JavaScript is the programming language that powers the interactive
             web. It brings websites to life with dynamic content, user
             interactions, and modern web applications that run in browsers and
             beyond.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
               <Star className="h-5 w-5 text-yellow-300" />
               <span className="text-base text-yellow-200 font-semibold">
@@ -154,28 +75,14 @@ function JavaScriptRoadmap() {
                 Powerful
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Assignments */}
-      <motion.section
-        key="assignments"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Code2 className="h-5 w-5 text-yellow-300" />
               <span className="text-base text-yellow-200 font-semibold">
@@ -189,16 +96,10 @@ function JavaScriptRoadmap() {
               Build your JavaScript skills through interactive assignments and
               practical exercises designed to reinforce your learning.
             </p>
-          </motion.div>
+          </div>
           <div className="flex justify-center">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-              <motion.article
-                variants={fadeUp}
-                initial="hidden"
-                animate={isLoaded ? "visible" : "hidden"}
-                whileHover={{ scale: 1.02, y: -4 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1, ease: "easeOut" }}
+              <article
                 onClick={handleAssignmentsClick}
                 className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-yellow-300/50 hover:shadow-yellow-200/20 overflow-hidden cursor-pointer"
                 role="button"
@@ -220,7 +121,7 @@ function JavaScriptRoadmap() {
                       <Code2 className="h-6 w-6 text-yellow-300" />
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></div>
+                      <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                       <span className="text-xs text-yellow-200 font-semibold">
                         Active
                       </span>
@@ -243,30 +144,16 @@ function JavaScriptRoadmap() {
                     <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                   </div>
                 </div>
-              </motion.article>
+              </article>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Roadmap */}
-      <motion.section
-        key="roadmap"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Target className="h-5 w-5 text-orange-300" />
               <span className="text-base text-orange-200 font-semibold">
@@ -280,22 +167,11 @@ function JavaScriptRoadmap() {
               Follow our structured learning path to master JavaScript from
               basics to advanced concepts and modern web development practices.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={immediateViewportConfig}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-orange-300/50 hover:shadow-orange-200/20 overflow-hidden"
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-orange-300/50 hover:shadow-orange-200/20 overflow-hidden">
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
@@ -326,31 +202,17 @@ function JavaScriptRoadmap() {
                       <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Code in Videos */}
-      <motion.section
-        key="videos"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Play className="h-5 w-5 text-yellow-300" />
               <span className="text-base text-yellow-200 font-semibold">
@@ -364,22 +226,11 @@ function JavaScriptRoadmap() {
               Learn through engaging video content with real-time coding
               examples and detailed explanations.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={immediateViewportConfig}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-yellow-300/50 hover:shadow-yellow-200/20 overflow-hidden"
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-yellow-300/50 hover:shadow-yellow-200/20 overflow-hidden">
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
@@ -409,31 +260,17 @@ function JavaScriptRoadmap() {
                       <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Facts & Information */}
-      <motion.section
-        key="facts"
-        className="relative px-4 pb-28 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={immediateViewportConfig}
-      >
+      <section className="relative px-4 pb-28 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <BookOpen className="h-5 w-5 text-orange-300" />
               <span className="text-base text-orange-200 font-semibold">
@@ -447,22 +284,11 @@ function JavaScriptRoadmap() {
               Deep dive into JavaScript's ecosystem with comprehensive guides,
               best practices, and expert insights.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={immediateViewportConfig}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-orange-300/50 hover:shadow-orange-200/20 overflow-hidden"
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-orange-300/50 hover:shadow-orange-200/20 overflow-hidden">
                   {/* Decorative gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
@@ -493,26 +319,19 @@ function JavaScriptRoadmap() {
                       <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
+        <div
           aria-hidden
           className="pointer-events-none absolute inset-0 overflow-hidden"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
         >
-          <motion.div
-            className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-yellow-500/15 via-orange-500/15 to-red-500/15 blur-3xl"
-            animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </motion.section>
+          <div className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-yellow-500/15 via-orange-500/15 to-red-500/15 blur-3xl" />
+        </div>
+      </section>
     </main>
   );
 }

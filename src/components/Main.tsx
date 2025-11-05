@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
@@ -16,13 +15,6 @@ import {
   Smartphone,
   Monitor,
 } from "lucide-react";
-import {
-  viewportConfig,
-  immediateViewportConfig,
-  mobileViewportConfig,
-  cardHover,
-  mobileCardHover,
-} from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 import { scrollRestoration } from "../utils/scrollRestoration";
 
@@ -106,7 +98,7 @@ const fieldsOfStudy: Field[] = [
   },
 ];
 
-function AnimatedBlob() {
+function StaticBlob() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -119,54 +111,23 @@ function AnimatedBlob() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Reduce animation complexity on mobile for better performance
-  const blobAnimation = isMobile
-    ? { y: [0, -10, 0], x: [0, 5, 0] }
-    : { y: [0, -20, 0], x: [0, 10, 0] };
-
-  const blobTransition = isMobile
-    ? { repeat: Infinity, duration: 8, ease: [0.4, 0, 0.6, 1] as const }
-    : { repeat: Infinity, duration: 10, ease: [0.4, 0, 0.6, 1] as const };
-
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <motion.div
+      <div
         aria-hidden
         className={`absolute -top-32 -right-32 ${
           isMobile ? "h-64 w-64" : "h-96 w-96"
         } rounded-full bg-gradient-to-br from-indigo-500/30 via-fuchsia-500/30 to-sky-500/30 ${
           isMobile ? "blur-2xl" : "blur-3xl"
         }`}
-        animate={blobAnimation}
-        transition={blobTransition}
       />
-      <motion.div
+      <div
         aria-hidden
         className={`absolute -bottom-32 -left-32 ${
           isMobile ? "h-80 w-80" : "h-[28rem] w-[28rem]"
         } rounded-full bg-gradient-to-tr from-sky-500/20 via-violet-500/20 to-pink-500/20 ${
           isMobile ? "blur-2xl" : "blur-3xl"
         }`}
-        animate={
-          isMobile
-            ? { y: [0, 10, 0], x: [0, -5, 0] }
-            : { y: [0, 20, 0], x: [0, -10, 0] }
-        }
-        transition={
-          isMobile
-            ? {
-                repeat: Infinity,
-                duration: 10,
-                ease: [0.4, 0, 0.6, 1] as const,
-                delay: 1,
-              }
-            : {
-                repeat: Infinity,
-                duration: 12,
-                ease: [0.4, 0, 0.6, 1] as const,
-                delay: 1,
-              }
-        }
       />
     </div>
   );
@@ -174,20 +135,11 @@ function AnimatedBlob() {
 
 export default function Main() {
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile device and ensure scroll responsiveness
+  // Ensure scroll responsiveness
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
-    };
-
-    checkMobile();
     scrollRestoration.ensureScrollResponsiveness();
 
-    window.addEventListener("resize", checkMobile);
-
-    // Ensure scroll responsiveness on scroll events
     const handleScroll = () => {
       scrollRestoration.preventScrollBlocking();
     };
@@ -195,7 +147,6 @@ export default function Main() {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("resize", checkMobile);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -210,54 +161,31 @@ export default function Main() {
       }}
     >
       <section className="relative isolate px-6 sm:px-8 lg:px-12">
-        <AnimatedBlob />
+        <StaticBlob />
         <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
-          >
+          <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-5 w-5 text-sky-400" />
             <span className="text-sm font-medium text-slate-200">
               Modern Tech Academy
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
-            className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-sky-400 via-blue-300 to-violet-400 bg-clip-text text-transparent leading-tight"
-          >
+          <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-sky-400 via-blue-300 to-violet-400 bg-clip-text text-transparent leading-tight">
             Welcome to TD Cousins
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-slate-300 font-light"
-          >
+          <p className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-slate-300 font-light">
             TD Cousins is an academy that provides you with lots of tutorials in
             programming and engineering. Learn by doing with a curated path and
             beautiful resources.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       <VisibilityGuard>
         <section className="relative px-6 pb-32 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={
-                isMobile ? mobileViewportConfig : immediateViewportConfig
-              }
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="mb-16 text-center"
-            >
+            <div className="mb-16 text-center">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
                 Fields of Study
               </h2>
@@ -265,39 +193,17 @@ export default function Main() {
                 At TD Cousins, you can dive into various areas of technology and
                 engineering — from frontend design to intelligent systems.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={
-                isMobile ? mobileViewportConfig : immediateViewportConfig
-              }
-              variants={{
-                hidden: { opacity: 0 },
-                show: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: isMobile ? 0.05 : 0.08,
-                    delayChildren: isMobile ? 0.02 : 0.05,
-                  },
-                },
-              }}
-              className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {fieldsOfStudy.map((field) => {
                 const isFrontend = field.name === "Frontend Development";
                 const handleActivate = () => {
                   if (isFrontend) navigate("/roadmap/frontend");
                 };
                 return (
-                  <motion.article
+                  <article
                     key={field.name}
-                    variants={isMobile ? mobileCardHover : cardHover}
-                    initial="rest"
-                    whileHover={!isMobile ? "hover" : undefined}
-                    whileTap="tap"
-                    transition={{ duration: 0.1, ease: "easeOut" }}
                     role={isFrontend ? "button" : undefined}
                     tabIndex={isFrontend ? 0 : -1}
                     onClick={handleActivate}
@@ -335,51 +241,24 @@ export default function Main() {
                     <p className="mt-3 text-base text-slate-300 leading-relaxed">
                       {field.tagline}
                     </p>
-
-                    <motion.div
-                      aria-hidden
-                      className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 ring-1 ring-sky-400/0 transition-opacity group-hover:opacity-100"
-                      initial={false}
-                      whileHover={{
-                        boxShadow: "0 0 0 1px rgba(139,92,246,0.25)",
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 15,
-                      }}
-                    />
-                  </motion.article>
+                  </article>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
+          <div
             aria-hidden
             className="pointer-events-none absolute inset-0 overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
           >
-            <motion.div
-              className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-gradient-to-br from-violet-500/25 via-sky-500/25 to-fuchsia-500/25 blur-3xl"
-              animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 16, ease: "easeInOut" }}
-            />
-          </motion.div>
+            <div className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-gradient-to-br from-violet-500/25 via-sky-500/25 to-fuchsia-500/25 blur-3xl" />
+          </div>
         </section>
       </VisibilityGuard>
 
       <section className="relative px-6 pb-32 sm:px-8 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={isMobile ? mobileViewportConfig : viewportConfig}
-            transition={{ duration: 0.5 }}
-            className="mb-16 text-center"
-          >
+          <div className="mb-16 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
               Our Courses
             </h2>
@@ -387,10 +266,10 @@ export default function Main() {
               Explore our growing collection of programming and engineering
               tutorials.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course, idx) => {
+            {courses.map((course) => {
               const isPython = course.name === "Python";
               const isHTML = course.name === "HTML";
               const isCSS = course.name === "CSS";
@@ -415,16 +294,8 @@ export default function Main() {
               };
 
               return (
-                <motion.article
+                <article
                   key={course.name}
-                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={isMobile ? mobileViewportConfig : viewportConfig}
-                  transition={{
-                    duration: 0.3,
-                    delay: idx * (isMobile ? 0.03 : 0.05),
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
                   role={isClickable ? "button" : undefined}
                   tabIndex={isClickable ? 0 : -1}
                   onClick={handleActivate}
@@ -472,16 +343,7 @@ export default function Main() {
                   <p className="mt-3 text-base text-slate-300 leading-relaxed">
                     {course.tagline}
                   </p>
-
-                  <motion.div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 ring-1 ring-sky-400/0 transition-opacity group-hover:opacity-100"
-                    initial={false}
-                    whileHover={{
-                      boxShadow: "0 0 0 1px rgba(56,189,248,0.25)",
-                    }}
-                  />
-                </motion.article>
+                </article>
               );
             })}
           </div>

@@ -12,8 +12,6 @@ import Express from "./components/ExpressRoadmap";
 import { Navigation } from "./components/Navigation";
 import { BackToTop } from "./components/BackToTop";
 import PythonAssignments from "./components/PythonAssignments";
-import { AnimatePresence, motion } from "framer-motion";
-import { pageVariants } from "./utils/animations";
 import { scrollRestoration } from "./utils/scrollRestoration";
 
 function ScrollToTop() {
@@ -38,97 +36,88 @@ function App() {
     <>
       <Navigation />
       <ScrollToTop />
-      <AnimatePresence
-        mode="wait"
-        initial={false}
-        onExitComplete={() => {
-          // Use scroll restoration utility to ensure scroll is not blocked
-          scrollRestoration.preventScrollBlocking();
-        }}
-      >
-        <Routes location={location} key={location.pathname}>
-          <Route
-            path="/"
-            element={
-              <Page>
-                <Main />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/frontend"
-            element={
-              <Page>
-                <Frontend />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/python"
-            element={
-              <Page>
-                <Python />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/python/assignments"
-            element={
-              <Page>
-                <PythonAssignments />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/html"
-            element={
-              <Page>
-                <HTML />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/css"
-            element={
-              <Page>
-                <CSS />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/javascript"
-            element={
-              <Page>
-                <JavaScriptRoadmap />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/react"
-            element={
-              <Page>
-                <ReactRoadmap />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/angular"
-            element={
-              <Page>
-                <Angular />
-              </Page>
-            }
-          />
-          <Route
-            path="/roadmap/express"
-            element={
-              <Page>
-                <Express />
-              </Page>
-            }
-          />
-        </Routes>
-      </AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <Page>
+              <Main />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/frontend"
+          element={
+            <Page>
+              <Frontend />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/python"
+          element={
+            <Page>
+              <Python />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/python/assignments"
+          element={
+            <Page>
+              <PythonAssignments />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/html"
+          element={
+            <Page>
+              <HTML />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/css"
+          element={
+            <Page>
+              <CSS />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/javascript"
+          element={
+            <Page>
+              <JavaScriptRoadmap />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/react"
+          element={
+            <Page>
+              <ReactRoadmap />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/angular"
+          element={
+            <Page>
+              <Angular />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/express"
+          element={
+            <Page>
+              <Express />
+            </Page>
+          }
+        />
+      </Routes>
       <BackToTop />
     </>
   );
@@ -142,15 +131,9 @@ function Page({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <motion.div
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      className="min-h-screen pt-16 framer-motion-container"
+    <div
+      className="min-h-screen pt-16"
       style={{
-        opacity: 1,
-        transform: "translateY(0)",
         overflow: "visible",
         pointerEvents: "auto",
         touchAction: "pan-y",
@@ -158,7 +141,7 @@ function Page({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 

@@ -172,7 +172,7 @@ button:hover, a:hover, [role="button"]:hover, .interactive:hover {
 
 /* Mobile-optimized card hover effects */
 .card-hover {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
@@ -194,7 +194,7 @@ button:hover, a:hover, [role="button"]:hover, .interactive:hover {
   font-weight: 600;
   padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
@@ -230,7 +230,6 @@ section {
 
 /* Prevent invisible content during route transitions */
 [data-framer-motion] {
-  /* Force visibility during transitions */
   opacity: 1 !important;
 }
 
@@ -245,7 +244,6 @@ section {
   /* Ensure sections are always visible */
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 /* Fallback for slow connections */
@@ -398,28 +396,5 @@ section {
   touch-action: pan-y;
 }
 
-/* Fix Framer Motion scroll blocking */
-[data-framer-motion] {
-  /* Ensure motion elements don't block scroll */
-  pointer-events: auto;
-  touch-action: pan-y;
-  overscroll-behavior: none;
-}
-
-/* Fix AnimatePresence scroll issues */
-.framer-motion-container {
-  /* Ensure container doesn't block scroll */
-  overflow: visible;
-  pointer-events: auto;
-  touch-action: pan-y;
-}
-
-/* Prevent scroll blocking on animated elements */
-.motion-div {
-  /* Ensure motion divs don't interfere with scroll */
-  pointer-events: auto;
-  touch-action: pan-y;
-  overscroll-behavior: none;
-}
 
 /* Fix for iOS Safari scroll issues */

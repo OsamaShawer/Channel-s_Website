@@ -1,27 +1,16 @@
-import { motion } from "framer-motion";
 import { Code2, Play, Sparkles, ChevronRight, Zap, Star } from "lucide-react";
-import { fadeUp, immediateViewportConfig } from "../utils/animations";
 import { VisibilityGuard } from "./VisibilityGuard";
 
-function AnimatedBlob() {
+function StaticBlob() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <motion.div
+      <div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-cyan-500/20 blur-3xl"
-        animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-cyan-500/15 via-emerald-500/15 to-teal-500/15 blur-3xl"
-        animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 25,
-          ease: "easeInOut",
-          delay: 2,
-        }}
       />
     </div>
   );
@@ -50,50 +39,24 @@ function PythonAssignments() {
   return (
     <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-white smooth-scroll">
       {/* Hero / Header Section */}
-      <motion.section
-        key="python-assignments-hero"
-        className="relative isolate px-4 sm:px-6 lg:px-8"
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-      >
-        <AnimatedBlob />
+      <section className="relative isolate px-4 sm:px-6 lg:px-8">
+        <StaticBlob />
         <div className="mx-auto max-w-3xl pt-28 pb-20 text-center sm:pt-32 sm:pb-28">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur"
-          >
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
             <Sparkles className="h-4 w-4 text-emerald-300" />
             <span className="text-sm text-slate-300">TD Cousins Academy</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
-            className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-br from-emerald-300 via-white to-cyan-300 bg-clip-text text-transparent"
-          >
+          <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-br from-emerald-300 via-white to-cyan-300 bg-clip-text text-transparent">
             Python Assignments
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300"
-          >
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">
             Here you will find the assignments of our Python course that will
             make you stronger and help you fully understand the videos.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors duration-100">
               <Star className="h-4 w-4 text-emerald-400" />
               <span className="text-sm text-emerald-300 font-medium">
@@ -112,21 +75,15 @@ function PythonAssignments() {
                 Practical Skills
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Assignment Cards Section */}
       <VisibilityGuard>
         <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={immediateViewportConfig}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-12 text-center"
-            >
+            <div className="mb-12 text-center">
               <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 border border-emerald-500/20 mb-4 hover:bg-emerald-500/20 transition-colors duration-100">
                 <Code2 className="h-4 w-4 text-emerald-400" />
                 <span className="text-sm text-emerald-300 font-medium">
@@ -140,28 +97,12 @@ function PythonAssignments() {
                 Complete these assignments to build your Python programming
                 skills step by step.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={immediateViewportConfig}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.1, delayChildren: 0.05 },
-                },
-              }}
-              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {assignments.map((assignment) => (
-                <motion.article
+                <article
                   key={assignment.id}
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.15, ease: "easeOut" }}
                   className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl shadow-black/20 backdrop-blur transition-all duration-100 hover:border-emerald-400/30 hover:bg-gradient-to-br hover:from-white/[0.08] hover:to-white/[0.04] hover:shadow-emerald-500/10 overflow-hidden"
                 >
                   {/* Decorative gradient overlay */}
@@ -174,7 +115,7 @@ function PythonAssignments() {
                       </div>
                       <div className="flex items-center gap-2">
                         {assignment.status === "in-progress" && (
-                          <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                          <div className="h-2 w-2 rounded-full bg-emerald-400"></div>
                         )}
                         <span
                           className={`rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset ${
@@ -213,35 +154,23 @@ function PythonAssignments() {
                       </div>
                     </div>
 
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.1, ease: "easeOut" }}
-                      className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 px-4 py-3 text-sm font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30 transition-all duration-100 hover:from-emerald-500/30 hover:to-cyan-500/30 hover:ring-emerald-400/50 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
-                    >
+                    <button className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 px-4 py-3 text-sm font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30 transition-all duration-100 hover:from-emerald-500/30 hover:to-cyan-500/30 hover:ring-emerald-400/50 group-hover:shadow-lg group-hover:shadow-emerald-500/20">
                       <Play className="h-4 w-4" />
                       <span>Start Assignment</span>
                       <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-100" />
-                    </motion.button>
+                    </button>
                   </div>
-                </motion.article>
+                </article>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
+          <div
             aria-hidden
             className="pointer-events-none absolute inset-0 overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
           >
-            <motion.div
-              className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-emerald-500/15 via-cyan-500/15 to-teal-500/15 blur-3xl"
-              animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
-            />
-          </motion.div>
+            <div className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-emerald-500/15 via-cyan-500/15 to-teal-500/15 blur-3xl" />
+          </div>
         </section>
       </VisibilityGuard>
     </main>

@@ -30,7 +30,7 @@ export function VisibilityGuard({
       className={`${className} motion-safe`}
       style={{
         opacity: isVisible ? 1 : 0,
-        transition: "opacity 0.2s ease-out", // Faster transition
+        transition: "opacity 0.1s ease-out",
         minHeight: "200px", // Ensure space is reserved
         pointerEvents: "auto",
         touchAction: "pan-y",

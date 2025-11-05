@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import {
   Code2,
   BookOpen,
@@ -11,55 +9,17 @@ import {
   Star,
   Zap,
 } from "lucide-react";
-import {
-  fadeUp,
-  mobileFadeUp,
-  staggerContainer,
-  mobileStaggerContainer,
-  viewportConfig,
-  immediateViewportConfig,
-  mobileViewportConfig,
-  mobileBlobAnimation,
-  desktopBlobAnimation,
-  isMobile,
-} from "../utils/animations";
 
-function AnimatedBlob() {
-  const [mobile, setMobile] = useState(false);
-
-  useEffect(() => {
-    setMobile(isMobile());
-  }, []);
-
+function StaticBlob() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <motion.div
+      <div
         aria-hidden
         className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-gradient-to-br from-red-500/20 via-pink-500/20 to-purple-500/20 blur-3xl"
-        animate={mobile ? mobileBlobAnimation : desktopBlobAnimation}
       />
-      <motion.div
+      <div
         aria-hidden
         className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-purple-500/15 via-red-500/15 to-pink-500/15 blur-3xl"
-        animate={
-          mobile
-            ? {
-                ...mobileBlobAnimation,
-                transition: {
-                  ...mobileBlobAnimation.transition,
-                  delay: 2,
-                  duration: 18,
-                },
-              }
-            : {
-                ...desktopBlobAnimation,
-                transition: {
-                  ...desktopBlobAnimation.transition,
-                  delay: 2,
-                  duration: 25,
-                },
-              }
-        }
       />
     </div>
   );
@@ -67,100 +27,35 @@ function AnimatedBlob() {
 
 function AngularRoadmap() {
   const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [mobile, setMobile] = useState(false);
-
-  useEffect(() => {
-    // Ensure content is visible after component mounts
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-
-    // Check for mobile
-    setMobile(isMobile());
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleAssignmentsClick = () => {
     navigate("/roadmap/angular/assignments");
   };
 
-  // Choose animation variants based on device
-  const fadeVariant = mobile ? mobileFadeUp : fadeUp;
-  const staggerVariant = mobile ? mobileStaggerContainer : staggerContainer;
-  const viewportVariant = mobile
-    ? mobileViewportConfig
-    : immediateViewportConfig;
-
   return (
-    <main
-      className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll"
-      style={{
-        opacity: isLoaded ? 1 : 0,
-        transition: "opacity 0.3s ease-in-out",
-      }}
-    >
+    <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white font-bold smooth-scroll">
       {/* Hero / Introduction */}
-      <motion.section
-        key="angular-hero"
-        className="relative isolate px-6 sm:px-8 lg:px-12"
-        variants={fadeVariant}
-        initial="hidden"
-        animate="visible"
-      >
-        <AnimatedBlob />
+      <section className="relative isolate px-6 sm:px-8 lg:px-12">
+        <StaticBlob />
         <div className="mx-auto max-w-4xl pt-32 pb-24 text-center sm:pt-40 sm:pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: mobile ? 0.4 : 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional"
-          >
+          <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-5 w-5 text-red-300" />
             <span className="text-base font-medium text-slate-200">
               TD Cousins Academy
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: mobile ? 0.5 : 0.75,
-              ease: "easeOut",
-              delay: 0.05,
-            }}
-            className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-red-400 via-pink-300 to-purple-400 bg-clip-text text-transparent leading-tight"
-          >
+          <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-red-400 via-pink-300 to-purple-400 bg-clip-text text-transparent leading-tight">
             Angular Framework
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: mobile ? 0.4 : 0.7,
-              ease: "easeOut",
-              delay: 0.1,
-            }}
-            className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light"
-          >
+          <p className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light">
             Angular is a comprehensive platform for building mobile and desktop
             web applications. It provides a complete solution with powerful
             tools, declarative templates, and dependency injection.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: mobile ? 0.4 : 0.7,
-              ease: "easeOut",
-              delay: 0.2,
-            }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
               <Star className="h-5 w-5 text-red-300" />
               <span className="text-base text-red-200 font-semibold">
@@ -179,28 +74,14 @@ function AngularRoadmap() {
                 Full-Stack
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Assignments */}
-      <motion.section
-        key="assignments"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeVariant}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={viewportVariant}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={mobile ? mobileViewportConfig : viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Code2 className="h-5 w-5 text-red-300" />
               <span className="text-base text-red-200 font-semibold">
@@ -214,22 +95,12 @@ function AngularRoadmap() {
               Build your Angular skills through interactive assignments and
               practical exercises designed to reinforce your learning.
             </p>
-          </motion.div>
+          </div>
           <div className="flex justify-center">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-              <motion.article
-                variants={fadeVariant}
-                initial="hidden"
-                animate={isLoaded ? "visible" : "hidden"}
-                {...(mobile ? {} : { whileHover: { scale: 1.02, y: -4 } })}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1, ease: "easeOut" }}
+              <article
                 onClick={handleAssignmentsClick}
-                className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden cursor-pointer ${
-                  mobile
-                    ? ""
-                    : "hover:border-red-300/50 hover:shadow-red-200/20"
-                }`}
+                className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden cursor-pointer hover:border-red-300/50 hover:shadow-red-200/20`}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -241,23 +112,15 @@ function AngularRoadmap() {
                 aria-label="Open Angular Assignments"
               >
                 {/* Decorative gradient overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-pink-500/5 transition-opacity duration-100 ${
-                    mobile ? "opacity-0" : "opacity-0 group-hover:opacity-100"
-                  }`}
-                />
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
                 <div className="relative z-10">
                   <div className="flex items-start justify-between">
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/25 to-pink-500/25 ring-1 ring-inset ring-red-400/20 transition-all duration-100 ${
-                        mobile ? "" : "group-hover:ring-red-400/40"
-                      }`}
-                    >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/25 to-pink-500/25 ring-1 ring-inset ring-red-400/20 group-hover:ring-red-400/40 transition-all duration-100">
                       <Code2 className="h-6 w-6 text-red-300" />
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-red-400 animate-pulse"></div>
+                      <div className="h-2 w-2 rounded-full bg-red-400"></div>
                       <span className="text-xs text-red-200 font-semibold">
                         Active
                       </span>
@@ -275,45 +138,21 @@ function AngularRoadmap() {
                     <div className="h-1 w-1 rounded-full bg-red-400"></div>
                     <span>Interactive exercises</span>
                   </div>
-                  <div
-                    className={`mt-4 flex items-center text-xs transition-colors duration-100 ${
-                      mobile
-                        ? "text-red-300/70"
-                        : "text-red-300/70 group-hover:text-red-300"
-                    }`}
-                  >
+                  <div className="mt-4 flex items-center text-xs text-red-300/70 group-hover:text-red-300 transition-colors duration-100">
                     <span>Start learning</span>
-                    <ChevronRight
-                      className={`h-3 w-3 ml-1 transition-transform duration-100 ${
-                        mobile ? "" : "group-hover:translate-x-1"
-                      }`}
-                    />
+                    <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                   </div>
                 </div>
-              </motion.article>
+              </article>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Roadmap */}
-      <motion.section
-        key="roadmap"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeVariant}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={viewportVariant}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={mobile ? mobileViewportConfig : viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Target className="h-5 w-5 text-pink-300" />
               <span className="text-base text-pink-200 font-semibold">
@@ -327,40 +166,19 @@ function AngularRoadmap() {
               Follow our structured learning path to master Angular from basics
               to advanced concepts and enterprise development practices.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerVariant}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={viewportVariant}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeVariant}
-                  {...(mobile ? {} : { whileHover: { scale: 1.02, y: -4 } })}
-                  whileTap={{ scale: 0.98 }}
-                  className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden ${
-                    mobile
-                      ? ""
-                      : "hover:border-pink-300/50 hover:shadow-pink-200/20"
-                  }`}
+                <article
+                  className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden hover:border-pink-300/50 hover:shadow-pink-200/20`}
                 >
                   {/* Decorative gradient overlay */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 transition-opacity duration-100 ${
-                      mobile ? "opacity-0" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between">
-                      <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/25 to-purple-500/25 ring-1 ring-inset ring-pink-400/20 transition-all duration-100 ${
-                          mobile ? "" : "group-hover:ring-pink-400/40"
-                        }`}
-                      >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/25 to-purple-500/25 ring-1 ring-inset ring-pink-400/20 group-hover:ring-pink-400/40 transition-all duration-100">
                         <Target className="h-6 w-6 text-pink-300" />
                       </div>
                       <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
@@ -380,46 +198,22 @@ function AngularRoadmap() {
                       <div className="h-1 w-1 rounded-full bg-pink-400"></div>
                       <span>Step-by-step progression</span>
                     </div>
-                    <div
-                      className={`mt-4 flex items-center text-xs transition-colors duration-100 ${
-                        mobile
-                          ? "text-pink-300/70"
-                          : "text-pink-300/70 group-hover:text-pink-300"
-                      }`}
-                    >
+                    <div className="mt-4 flex items-center text-xs text-pink-300/70 group-hover:text-pink-300 transition-colors duration-100">
                       <span>Start roadmap</span>
-                      <ChevronRight
-                        className={`h-3 w-3 ml-1 transition-transform duration-100 ${
-                          mobile ? "" : "group-hover:translate-x-1"
-                        }`}
-                      />
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Code in Videos */}
-      <motion.section
-        key="videos"
-        className="relative px-4 pb-24 sm:px-6 lg:px-8"
-        variants={fadeVariant}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={viewportVariant}
-      >
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={mobile ? mobileViewportConfig : viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <Play className="h-5 w-5 text-red-300" />
               <span className="text-base text-red-200 font-semibold">
@@ -433,40 +227,17 @@ function AngularRoadmap() {
               Learn through engaging video content with real-time coding
               examples and detailed explanations.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerVariant}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={viewportVariant}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeVariant}
-                  {...(mobile ? {} : { whileHover: { scale: 1.02, y: -4 } })}
-                  whileTap={{ scale: 0.98 }}
-                  className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden ${
-                    mobile
-                      ? ""
-                      : "hover:border-red-300/50 hover:shadow-red-200/20"
-                  }`}
-                >
+                <article className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden hover:border-red-300/50 hover:shadow-red-200/20">
                   {/* Decorative gradient overlay */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-pink-500/5 transition-opacity duration-100 ${
-                      mobile ? "opacity-0" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between">
-                      <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/25 to-pink-500/25 ring-1 ring-inset ring-red-400/20 transition-all duration-100 ${
-                          mobile ? "" : "group-hover:ring-red-400/40"
-                        }`}
-                      >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/25 to-pink-500/25 ring-1 ring-inset ring-red-400/20 group-hover:ring-red-400/40 transition-all duration-100">
                         <Play className="h-6 w-6 text-red-300" />
                       </div>
                       <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
@@ -485,46 +256,22 @@ function AngularRoadmap() {
                       <div className="h-1 w-1 rounded-full bg-red-400"></div>
                       <span>Step-by-step tutorials</span>
                     </div>
-                    <div
-                      className={`mt-4 flex items-center text-xs transition-colors duration-100 ${
-                        mobile
-                          ? "text-red-300/70"
-                          : "text-red-300/70 group-hover:text-red-300"
-                      }`}
-                    >
+                    <div className="mt-4 flex items-center text-xs text-red-300/70 group-hover:text-red-300 transition-colors duration-100">
                       <span>Watch now</span>
-                      <ChevronRight
-                        className={`h-3 w-3 ml-1 transition-transform duration-100 ${
-                          mobile ? "" : "group-hover:translate-x-1"
-                        }`}
-                      />
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Facts & Information */}
-      <motion.section
-        key="facts"
-        className="relative px-4 pb-28 sm:px-6 lg:px-8"
-        variants={fadeVariant}
-        initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
-        whileInView="visible"
-        viewport={viewportVariant}
-      >
+      <section className="relative px-4 pb-28 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={mobile ? mobileViewportConfig : viewportConfig}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional mb-4">
               <BookOpen className="h-5 w-5 text-pink-300" />
               <span className="text-base text-pink-200 font-semibold">
@@ -538,40 +285,19 @@ function AngularRoadmap() {
               Deep dive into Angular's ecosystem with comprehensive guides, best
               practices, and expert insights.
             </p>
-          </motion.div>
-          <motion.div
-            variants={staggerVariant}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={viewportVariant}
-          >
+          </div>
+          <div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                <motion.article
-                  variants={fadeVariant}
-                  {...(mobile ? {} : { whileHover: { scale: 1.02, y: -4 } })}
-                  whileTap={{ scale: 0.98 }}
-                  className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden ${
-                    mobile
-                      ? ""
-                      : "hover:border-pink-300/50 hover:shadow-pink-200/20"
-                  }`}
+                <article
+                  className={`group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 overflow-hidden hover:border-pink-300/50 hover:shadow-pink-200/20`}
                 >
                   {/* Decorative gradient overlay */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 transition-opacity duration-100 ${
-                      mobile ? "opacity-0" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between">
-                      <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/25 to-purple-500/25 ring-1 ring-inset ring-pink-400/20 transition-all duration-100 ${
-                          mobile ? "" : "group-hover:ring-pink-400/40"
-                        }`}
-                      >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/25 to-purple-500/25 ring-1 ring-inset ring-pink-400/20 group-hover:ring-pink-400/40 transition-all duration-100">
                         <BookOpen className="h-6 w-6 text-pink-300" />
                       </div>
                       <span className="rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300 ring-1 ring-inset ring-amber-400/30">
@@ -591,40 +317,24 @@ function AngularRoadmap() {
                       <div className="h-1 w-1 rounded-full bg-pink-400"></div>
                       <span>Comprehensive guides</span>
                     </div>
-                    <div
-                      className={`mt-4 flex items-center text-xs transition-colors duration-100 ${
-                        mobile
-                          ? "text-pink-300/70"
-                          : "text-pink-300/70 group-hover:text-pink-300"
-                      }`}
-                    >
+                    <div className="mt-4 flex items-center text-xs text-pink-300/70 group-hover:text-pink-300 transition-colors duration-100">
                       <span>Explore knowledge</span>
-                      <ChevronRight
-                        className={`h-3 w-3 ml-1 transition-transform duration-100 ${
-                          mobile ? "" : "group-hover:translate-x-1"
-                        }`}
-                      />
+                      <ChevronRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform duration-100" />
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
+        <div
           aria-hidden
           className="pointer-events-none absolute inset-0 overflow-hidden"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
         >
-          <motion.div
-            className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-red-500/15 via-pink-500/15 to-purple-500/15 blur-3xl"
-            animate={mobile ? mobileBlobAnimation : desktopBlobAnimation}
-          />
-        </motion.div>
-      </motion.section>
+          <div className="absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-red-500/15 via-pink-500/15 to-purple-500/15 blur-3xl" />
+        </div>
+      </section>
     </main>
   );
 }
