@@ -9,6 +9,10 @@ import JavaScriptRoadmap from "./components/JavaScriptRoadmap";
 import ReactRoadmap from "./components/ReactRoadmap";
 import Angular from "./components/AngularRoadmap";
 import Express from "./components/ExpressRoadmap";
+import Backend from "./components/BackendRoadmap";
+import Flask from "./components/FlaskRoadmap";
+import Laravel from "./components/LaravelRoadmap";
+import SQL from "./components/SQLRoadmap";
 import { Navigation } from "./components/Navigation";
 import { BackToTop } from "./components/BackToTop";
 import PythonAssignments from "./components/PythonAssignments";
@@ -117,12 +121,43 @@ function App() {
             </Page>
           }
         />
+        <Route
+          path="/roadmap/backend"
+          element={
+            <Page>
+              <Backend />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/flask"
+          element={
+            <Page>
+              <Flask />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/laravel"
+          element={
+            <Page>
+              <Laravel />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/sql"
+          element={
+            <Page>
+              <SQL />
+            </Page>
+          }
+        />
       </Routes>
       <BackToTop />
     </>
   );
 }
-
 function Page({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     // Use scroll restoration utility

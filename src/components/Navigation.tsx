@@ -27,7 +27,7 @@ export function Navigation() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 to-violet-400 flex items-center justify-center">
               <Code2 className="w-5 h-5 text-white" />
             </div>
-            TD Cousins
+            TC Cousins
           </button>
 
           {/* Desktop Navigation */}

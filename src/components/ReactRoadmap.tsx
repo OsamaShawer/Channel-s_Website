@@ -41,7 +41,7 @@ function ReactRoadmap() {
           <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-5 w-5 text-cyan-300" />
             <span className="text-base font-medium text-slate-200">
-              TD Cousins Academy
+              TC Cousins Academy
             </span>
           </div>
 

@@ -171,11 +171,11 @@ export default function Main() {
           </div>
 
           <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-sky-400 via-blue-300 to-violet-400 bg-clip-text text-transparent leading-tight">
-            Welcome to TD Cousins
+            Welcome to TC Cousins
           </h1>
 
           <p className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-slate-300 font-light">
-            TD Cousins is an academy that provides you with lots of tutorials in
+            TC Cousins is an academy that provides you with lots of tutorials in
             programming and engineering. Learn by doing with a curated path and
             beautiful resources.
           </p>
@@ -190,7 +190,7 @@ export default function Main() {
                 Fields of Study
               </h2>
               <p className="mx-auto mt-6 max-w-4xl text-lg text-slate-300 font-light leading-relaxed">
-                At TD Cousins, you can dive into various areas of technology and
+                At TC Cousins, you can dive into various areas of technology and
                 engineering — from frontend design to intelligent systems.
               </p>
             </div>
@@ -198,17 +198,19 @@ export default function Main() {
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {fieldsOfStudy.map((field) => {
                 const isFrontend = field.name === "Frontend Development";
+                const isBackend = field.name === "Backend Development";
                 const handleActivate = () => {
                   if (isFrontend) navigate("/roadmap/frontend");
+                  if (isBackend) navigate("/roadmap/backend");
                 };
                 return (
                   <article
                     key={field.name}
-                    role={isFrontend ? "button" : undefined}
-                    tabIndex={isFrontend ? 0 : -1}
+                    role={isFrontend || isBackend ? "button" : undefined}
+                    tabIndex={isFrontend || isBackend ? 0 : -1}
                     onClick={handleActivate}
                     onKeyDown={(e) => {
-                      if (!isFrontend) return;
+                      if (!isFrontend && !isBackend) return;
                       if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
                         handleActivate();
@@ -217,11 +219,13 @@ export default function Main() {
                     aria-label={
                       isFrontend
                         ? "Open Frontend Development roadmap"
+                        : isBackend
+                        ? "Open Backend Development roadmap"
                         : undefined
                     }
                     className={
                       "group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-violet-400/40 interactive " +
-                      (isFrontend ? "cursor-pointer" : "")
+                      (isFrontend || isBackend ? "cursor-pointer" : "")
                     }
                   >
                     <div className="flex items-start justify-between">

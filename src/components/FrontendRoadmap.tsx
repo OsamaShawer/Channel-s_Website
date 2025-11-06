@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Code2, Layout, Palette, Atom, Sparkles, Zap } from "lucide-react";
 
 function StaticBlob() {
@@ -16,6 +17,12 @@ function StaticBlob() {
 }
 
 export default function FrontendRoadmap() {
+  const navigate = useNavigate();
+
+  const handleLanguageClick = (language: string) => {
+    navigate(`/roadmap/${language.toLowerCase()}`);
+  };
+
   return (
     <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white smooth-scroll">
       {/* Hero / Introduction */}
@@ -25,7 +32,7 @@ export default function FrontendRoadmap() {
           <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-6 w-6 text-sky-400" />
             <span className="text-sm font-medium text-slate-200">
-              TD Cousins Academy
+              TC Cousins Academy
             </span>
           </div>
 
@@ -170,21 +177,34 @@ export default function FrontendRoadmap() {
                 title: "HTML",
                 icon: Layout,
                 desc: "HTML is the structure of a webpage — it forms the skeleton that holds all your content. Think of it as the blueprint of every site.",
+                path: "html",
               },
               {
                 title: "CSS",
                 icon: Palette,
                 desc: "CSS is the design language of the web — it brings color, motion, and layout to life, transforming raw structure into visually stunning experiences.",
+                path: "css",
               },
               {
                 title: "JavaScript",
                 icon: Code2,
                 desc: "JavaScript powers interactivity and logic — it makes websites dynamic, responsive, and capable of complex behaviors.",
+                path: "javascript",
               },
             ].map((item) => (
               <article
                 key={item.title}
-                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-white/30 hover:shadow-white/10"
+                onClick={() => handleLanguageClick(item.path)}
+                className="group relative rounded-3xl glass-card p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-white/30 hover:shadow-white/10 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleLanguageClick(item.path);
+                  }
+                }}
+                aria-label={`Navigate to ${item.title} roadmap`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">
@@ -224,21 +244,28 @@ export default function FrontendRoadmap() {
                 title: "React",
                 icon: Atom,
                 desc: "React is a modern UI library that helps you build fast, dynamic, and interactive websites with component-based architecture.",
+                path: "react",
               },
               {
                 title: "Angular",
                 icon: Zap,
                 desc: "Angular is a powerful framework that provides a complete solution for building scalable and maintainable web applications.",
-              },
-              {
-                title: "Framer Motion",
-                icon: Sparkles,
-                desc: "Framer Motion adds life to your UI — it's a React library for stunning animations and fluid transitions with minimal effort.",
+                path: "angular",
               },
             ].map((fw) => (
               <article
                 key={fw.title}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-white/20"
+                onClick={() => handleLanguageClick(fw.path)}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 shadow-professional-lg backdrop-blur transition-all duration-100 hover:border-white/20 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleLanguageClick(fw.path);
+                  }
+                }}
+                aria-label={`Navigate to ${fw.title} roadmap`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/20 to-violet-500/20 ring-1 ring-inset ring-white/10">

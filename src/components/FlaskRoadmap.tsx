@@ -25,11 +25,11 @@ function StaticBlob() {
   );
 }
 
-function JavaScriptRoadmap() {
+function FlaskRoadmap() {
   const navigate = useNavigate();
 
   const handleAssignmentsClick = () => {
-    navigate("/roadmap/javascript/assignments");
+    navigate("/roadmap/flask/assignments");
   };
 
   return (
@@ -46,33 +46,32 @@ function JavaScriptRoadmap() {
           </div>
 
           <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-br from-yellow-400 via-orange-300 to-red-400 bg-clip-text text-transparent leading-tight">
-            JavaScript Programming Language
+            Flask Framework
           </h1>
 
           <p className="mx-auto mt-8 max-w-4xl text-2xl leading-8 text-slate-300 leading-relaxed font-light">
-            JavaScript is the programming language that powers the interactive
-            web. It brings websites to life with dynamic content, user
-            interactions, and modern web applications that run in browsers and
-            beyond.
+            Flask is a lightweight and flexible Python web framework perfect for
+            building web applications and APIs. Its simplicity and elegance make
+            it ideal for both beginners and experienced developers.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
               <Star className="h-5 w-5 text-yellow-300" />
               <span className="text-base text-yellow-200 font-semibold">
-                Interactive
+                Lightweight
               </span>
             </div>
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
               <Zap className="h-5 w-5 text-orange-300" />
               <span className="text-base text-orange-200 font-semibold">
-                Dynamic
+                Flexible
               </span>
             </div>
             <div className="flex items-center gap-2 rounded-full glass-card px-6 py-3 shadow-professional">
               <Code2 className="h-5 w-5 text-red-300" />
               <span className="text-base text-red-200 font-semibold">
-                Powerful
+                Python-Powered
               </span>
             </div>
           </div>
@@ -93,7 +92,7 @@ function JavaScriptRoadmap() {
               Hands-On Practice
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300 leading-relaxed">
-              Build your JavaScript skills through interactive assignments and
+              Build your Flask skills through interactive assignments and
               practical exercises designed to reinforce your learning.
             </p>
           </div>
@@ -110,7 +109,7 @@ function JavaScriptRoadmap() {
                     handleAssignmentsClick();
                   }
                 }}
-                aria-label="Open JavaScript Assignments"
+                aria-label="Open Flask Assignments"
               >
                 {/* Decorative gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
@@ -132,8 +131,8 @@ function JavaScriptRoadmap() {
                   </h3>
                   <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
                     Practice with carefully crafted assignments and questions
-                    that will strengthen your JavaScript skills and enhance your
-                    programming abilities.
+                    that will strengthen your Flask skills and enhance your
+                    backend development abilities.
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-xs text-yellow-300">
                     <div className="h-1 w-1 rounded-full bg-yellow-400"></div>
@@ -161,11 +160,11 @@ function JavaScriptRoadmap() {
               </span>
             </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-orange-300 to-red-300 bg-clip-text text-transparent">
-              JavaScript Roadmap
+              Flask Roadmap
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300 leading-relaxed">
-              Follow our structured learning path to master JavaScript from
-              basics to advanced concepts and modern web development practices.
+              Follow our structured learning path to master Flask from basics to
+              advanced concepts and modern backend development practices.
             </p>
           </div>
           <div>
@@ -188,9 +187,9 @@ function JavaScriptRoadmap() {
                       Roadmap
                     </h3>
                     <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                      Complete structured learning path covering JavaScript
-                      fundamentals, ES6+, DOM manipulation, async programming,
-                      and modern frameworks for building dynamic web
+                      Complete structured learning path covering Flask
+                      fundamentals, routing, templates, database integration,
+                      and modern development practices for building scalable web
                       applications.
                     </p>
                     <div className="mt-4 flex items-center gap-2 text-xs text-orange-300">
@@ -247,7 +246,7 @@ function JavaScriptRoadmap() {
                       Code in Videos
                     </h3>
                     <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                      Master JavaScript through engaging video tutorials with
+                      Master Flask through engaging video tutorials with
                       step-by-step examples. Watch directly on our platform or
                       follow along on YouTube for comprehensive explanations.
                     </p>
@@ -267,7 +266,7 @@ function JavaScriptRoadmap() {
         </div>
       </section>
 
-      {/* Facts & Information */}
+      {/* Documentation */}
       <section className="relative px-4 pb-28 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
@@ -278,11 +277,11 @@ function JavaScriptRoadmap() {
               </span>
             </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-orange-300 to-red-300 bg-clip-text text-transparent">
-              JavaScript Knowledge Hub
+              Flask Knowledge Hub
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300 leading-relaxed">
-              Deep dive into JavaScript's ecosystem with comprehensive guides,
-              best practices, and expert insights.
+              Deep dive into Flask's ecosystem with comprehensive guides, best
+              practices, and expert insights.
             </p>
           </div>
           <div>
@@ -302,13 +301,12 @@ function JavaScriptRoadmap() {
                       </span>
                     </div>
                     <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
-                      Full Explain in Text
+                      Documentation
                     </h3>
                     <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
-                      Discover comprehensive explanations about JavaScript's
-                      history, features, and applications. For video
-                      explanations, our YouTube tutorials provide additional
-                      insights.
+                      Discover comprehensive explanations about Flask's history,
+                      features, and applications. For video explanations, our
+                      YouTube tutorials provide additional insights.
                     </p>
                     <div className="mt-4 flex items-center gap-2 text-xs text-orange-300">
                       <div className="h-1 w-1 rounded-full bg-orange-400"></div>
@@ -335,4 +333,4 @@ function JavaScriptRoadmap() {
     </main>
   );
 }
-export default JavaScriptRoadmap;
+export default FlaskRoadmap;

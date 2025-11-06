@@ -44,7 +44,7 @@ function PythonAssignments() {
         <div className="mx-auto max-w-3xl pt-28 pb-20 text-center sm:pt-32 sm:pb-28">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
             <Sparkles className="h-4 w-4 text-emerald-300" />
-            <span className="text-sm text-slate-300">TD Cousins Academy</span>
+            <span className="text-sm text-slate-300">TC Cousins Academy</span>
           </div>
 
           <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-br from-emerald-300 via-white to-cyan-300 bg-clip-text text-transparent">

@@ -41,7 +41,7 @@ function HTMLRoadmap() {
           <div className="inline-flex items-center gap-3 rounded-full glass-card px-6 py-3 backdrop-blur shadow-professional">
             <Sparkles className="h-5 w-5 text-orange-300" />
             <span className="text-base font-medium text-slate-200">
-              TD Cousins Academy
+              TC Cousins Academy
             </span>
           </div>
 
@@ -301,7 +301,7 @@ function HTMLRoadmap() {
                       </span>
                     </div>
                     <h3 className="mt-6 text-2xl font-semibold text-white font-bold">
-                      Full Explain in Text
+                      Documentation
                     </h3>
                     <p className="mt-3 text-base text-slate-300 leading-relaxed leading-relaxed">
                       Discover comprehensive explanations about HTML's history,

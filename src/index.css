@@ -320,12 +320,14 @@ section {
   .blur-2xl {
     filter: blur(8px);
   }
+
   
-  /* Optimize scroll performance */
+  /* Optimize scroll performance */ 
   body {
     -webkit-overflow-scrolling: touch;
   }
-  
+
+
   /* Disable hover effects on mobile */
   .group:hover .group-hover\:opacity-100 {
     opacity: 0 !important;
