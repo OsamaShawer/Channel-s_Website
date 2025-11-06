@@ -398,5 +398,151 @@ section {
   touch-action: pan-y;
 }
 
+/* Code block styling */
+pre {
+  position: relative;
+}
+
+pre code {
+  display: block;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+}
+
+/* VS Code Syntax Highlighting Colors */
+pre code .token.tag,
+pre code .token.tag-name {
+  color: #569cd6; /* Blue for HTML tags */
+}
+
+pre code .token.attr-name {
+  color: #92c5f7; /* Light blue for attributes */
+}
+
+pre code .token.attr-value,
+pre code .token.string {
+  color: #ce9178; /* Orange for strings */
+}
+
+pre code .token.keyword {
+  color: #c586c0; /* Purple for keywords */
+}
+
+pre code .token.function {
+  color: #dcdcaa; /* Yellow for functions */
+}
+
+pre code .token.comment {
+  color: #6a9955; /* Green for comments */
+}
+
+pre code .token.number {
+  color: #b5cea8; /* Light green for numbers */
+}
+
+pre code .token.operator {
+  color: #d4d4d4; /* White for operators */
+}
+
+pre code .token.punctuation {
+  color: #d4d4d4; /* White for punctuation */
+}
+
+pre code .token.property {
+  color: #92c5f7; /* Light blue for CSS properties */
+}
+
+pre code .token.selector {
+  color: #d7ba7d; /* Yellow for CSS selectors */
+}
+
+pre code .token.class-name {
+  color: #4ec9b0; /* Cyan for class names */
+}
+
+/* HTML specific colors */
+pre code.language-html .token.tag {
+  color: #569cd6;
+}
+
+pre code.language-html .token.attr-name {
+  color: #92c5f7;
+}
+
+pre code.language-html .token.attr-value {
+  color: #ce9178;
+}
+
+/* CSS specific colors */
+pre code.language-css .token.selector {
+  color: #d7ba7d;
+}
+
+pre code.language-css .token.property {
+  color: #92c5f7;
+}
+
+pre code.language-css .token.string {
+  color: #ce9178;
+}
+
+pre code.language-css .token.function {
+  color: #dcdcaa;
+}
+
+/* JavaScript specific colors */
+pre code.language-javascript .token.keyword {
+  color: #c586c0;
+}
+
+pre code.language-javascript .token.function {
+  color: #dcdcaa;
+}
+
+pre code.language-javascript .token.string {
+  color: #ce9178;
+}
+
+pre code.language-javascript .token.number {
+  color: #b5cea8;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for code blocks */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.5);
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.7);
+}
+
+.scrollbar-thumb-slate-700 {
+  scrollbar-color: rgba(51, 65, 85, 0.8) transparent;
+}
+
+.scrollbar-track-transparent {
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
 
 /* Fix for iOS Safari scroll issues */

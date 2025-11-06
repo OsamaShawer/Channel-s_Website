@@ -13,9 +13,13 @@ import Backend from "./components/BackendRoadmap";
 import Flask from "./components/FlaskRoadmap";
 import Laravel from "./components/LaravelRoadmap.tsx";
 import SQL from "./components/SQLRoadmap.tsx";
+import HTMLCSSTemplates from "./components/HTMLCSSTemplatesRoadmap";
+import HTMLCSSJSTemplates from "./components/HTMLCSSJSTemplatesRoadmap";
+import FullStackTemplates from "./components/FullStackTemplatesRoadmap";
 import { Navigation } from "./components/Navigation";
 import { BackToTop } from "./components/BackToTop";
 import PythonAssignments from "./components/PythonAssignments";
+import { ShortDetail } from "./components/ShortDetail";
 import { scrollRestoration } from "./utils/scrollRestoration";
 
 function ScrollToTop() {
@@ -150,6 +154,38 @@ function App() {
           element={
             <Page>
               <SQL />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/html-css-templates"
+          element={
+            <Page>
+              <HTMLCSSTemplates />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/html-css-js-templates"
+          element={
+            <Page>
+              <HTMLCSSJSTemplates />
+            </Page>
+          }
+        />
+        <Route
+          path="/roadmap/full-stack-templates"
+          element={
+            <Page>
+              <FullStackTemplates />
+            </Page>
+          }
+        />
+        <Route
+          path="/shorts/:id"
+          element={
+            <Page>
+              <ShortDetail />
             </Page>
           }
         />

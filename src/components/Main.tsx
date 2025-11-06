@@ -11,12 +11,15 @@ import {
   Palette,
   Layers,
   Brain,
-  LineChart,
   Smartphone,
   Monitor,
+  FlaskConical,
+  FileText,
+  Globe,
 } from "lucide-react";
 import { VisibilityGuard } from "./VisibilityGuard";
 import { scrollRestoration } from "../utils/scrollRestoration";
+import { ShortsSection } from "./ShortsSection";
 
 type Course = {
   name: string;
@@ -52,6 +55,36 @@ const courses: Course[] = [
     inProgress: true,
   },
   { name: "Python", tagline: "General-purpose programming", icon: Braces },
+  {
+    name: "Flask",
+    tagline: "Python web framework",
+    icon: FlaskConical,
+    inProgress: true,
+  },
+  {
+    name: "Laravel",
+    tagline: "PHP web framework",
+    icon: Server,
+    inProgress: true,
+  },
+  {
+    name: "HTML & CSS Templates",
+    tagline: "Build website templates",
+    icon: FileText,
+    inProgress: true,
+  },
+  {
+    name: "HTML & CSS & JS Templates",
+    tagline: "Interactive web templates",
+    icon: Layers,
+    inProgress: true,
+  },
+  {
+    name: "Full Stack Templates",
+    tagline: "Complete web applications",
+    icon: Globe,
+    inProgress: true,
+  },
 ];
 
 type Field = {
@@ -80,11 +113,6 @@ const fieldsOfStudy: Field[] = [
     name: "Data Science and Machine Learning",
     tagline: "Turn data into insights",
     icon: Brain,
-  },
-  {
-    name: "Time Series Analysis",
-    tagline: "Analyze data over time",
-    icon: LineChart,
   },
   {
     name: "Mobile Application Development",
@@ -264,7 +292,7 @@ export default function Main() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl gradient-text">
-              Our Courses
+              Our Courses & Playlists
             </h2>
             <p className="mt-6 text-lg text-slate-300 font-light">
               Explore our growing collection of programming and engineering
@@ -280,13 +308,25 @@ export default function Main() {
               const isJavaScript = course.name === "JavaScript";
               const isReact = course.name === "React";
               const isExpress = course.name === "Express";
+              const isFlask = course.name === "Flask";
+              const isLaravel = course.name === "Laravel";
+              const isHTMLCSSTemplates = course.name === "HTML & CSS Templates";
+              const isHTMLCSSJSTemplates =
+                course.name === "HTML & CSS & JS Templates";
+              const isFullStackTemplates =
+                course.name === "Full Stack Templates";
               const isClickable =
                 isPython ||
                 isHTML ||
                 isCSS ||
                 isJavaScript ||
                 isReact ||
-                isExpress;
+                isExpress ||
+                isFlask ||
+                isLaravel ||
+                isHTMLCSSTemplates ||
+                isHTMLCSSJSTemplates ||
+                isFullStackTemplates;
 
               const handleActivate = () => {
                 if (isPython) navigate("/roadmap/python");
@@ -295,6 +335,13 @@ export default function Main() {
                 if (isJavaScript) navigate("/roadmap/javascript");
                 if (isReact) navigate("/roadmap/react");
                 if (isExpress) navigate("/roadmap/express");
+                if (isFlask) navigate("/roadmap/flask");
+                if (isLaravel) navigate("/roadmap/laravel");
+                if (isHTMLCSSTemplates) navigate("/roadmap/html-css-templates");
+                if (isHTMLCSSJSTemplates)
+                  navigate("/roadmap/html-css-js-templates");
+                if (isFullStackTemplates)
+                  navigate("/roadmap/full-stack-templates");
               };
 
               return (
@@ -323,6 +370,16 @@ export default function Main() {
                       ? "Open React course roadmap"
                       : isExpress
                       ? "Open Express course roadmap"
+                      : isFlask
+                      ? "Open Flask course roadmap"
+                      : isLaravel
+                      ? "Open Laravel course roadmap"
+                      : isHTMLCSSTemplates
+                      ? "Open HTML & CSS Templates roadmap"
+                      : isHTMLCSSJSTemplates
+                      ? "Open HTML & CSS & JS Templates roadmap"
+                      : isFullStackTemplates
+                      ? "Open Full Stack Templates roadmap"
                       : undefined
                   }
                   className={
@@ -353,6 +410,9 @@ export default function Main() {
           </div>
         </div>
       </section>
+
+      {/* Shorts Section */}
+      <ShortsSection />
     </main>
   );
 }
